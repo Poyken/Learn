@@ -1,0 +1,40 @@
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        --column-size: #{$i};
+    }
+}
+
+$breakpoints: ( sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400, );
+@mixin column($name: "") {
+    $prefix: ".col-";
+    @for $i from 1 through 12 {
+        $selector: $prefix + $i;
+        @if ($name !="") {
+            $selector: $prefix + $name + "-" + $i;
+        }
+        #{$selector} {
+            --column-size: #{$i};
+        }
+    }
+}
+
+@include column();
+@each $name,
+$breakpoint in $breakpoints {
+    @media screen and (min-width:#{$breakpoint}px) {
+        @include column($name);
+    }
+}
+
+.posts {
+    &-item {
+        display: flex;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid black;
+        gap: 20px;
+    }
+    &-right {
+        flex-direction: row-reverse;
+    }
+}

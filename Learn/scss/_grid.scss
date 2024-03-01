@@ -1,0 +1,27 @@
+@mixin gird($column,$spacing){
+    display: flex;
+    row-gap:$spacing;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * $spacing);
+    > * {
+        width: calc(100% / $column - $spacing);
+        margin-left: $spacing;
+    }
+}
+@mixin screen($device){
+    @if $device== mobile{
+        @media screen and (max-width:576px){
+            @content;
+        }
+    }
+    @if $device== tablet{
+        @media screen and (min-width:576px) and (max-width:992px){
+            @content;
+        }
+    }
+    @if $device== pc{
+        @media screen and (min-width:992px)and (max-width:1200px){
+            @content;
+        }
+    }
+}

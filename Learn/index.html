@@ -1,0 +1,3167 @@
+<!-- 
+Video 1+2
+website hoạt động như thế nào?
+user vào trình duyệt gõ tên miền , dns serer phân giải tên miền thành địa chỉ ip của server 
+server tiếp nhận req từ trình duyệt sau đó trả về res
+HTTP req-res
+khi client gửi 1 yêu cầu lên server -> http req
+server trả về kết quả -> http res
+trình duyệt render
+html ko phải ngôn ngữ lậ trình
+có 2 loại thẻ : thẻ mở, thẻ đóng
+một số thuộc tính có giá trị bằng chính tên thuộc tính nên có thể bỏ qua value
+html sematic : tuân thủ
+block : width height =100% parent: h1->h6 ,p,div,ul li ol li pre hr bloackquote
+inline: width height = content: còn lại
+bất kì các thẻ html đều có 3 thuộc tính mặc định : class và id , title
+heading :h1->h6:nhấn mạnh tiêu đề
+tuân thủ thứ tự h1 h2 h3...
+trong 1 trang web chỉ nhấn mạnh tiêu đề mới cần heading
+một website bao gồm nhiều trang web 
+1 trang web chỉ có 1 trang 
+tại sao phải làm như vây ? Liên quan đến Seo= bộ máy tìm kiếm
+trong thẻ p chỉ có text
+
+chú ý lỗi xss
+a
+a:tím:đã truy cập ? xanh:chưa truy cập
+mở tab hiện tại targer=_selef; mở tab mới target=_blank
+quyết định: bộ nhớ cache
+
+đường dẫn :
+tuyệt đối:khong phụ thuộc vào cd đang ở đâu: /abc:-> 127.0.0.1:5500/abc
+tương đối: phụ thuộc vào vị trí cd đang đứng: ./abc:->127.0.0.1:5500/folder/abc
+tương đối: phụ thuộc vào vị trí cd đang đứng: ../abc:->127.0.0.1:5500/abc
+
+thẻ br chỉ được dùng để ngắt văn bản
+strong:nhấn mạnh ngữ điệu->thông báo search engine hỗ trỡ trình đọc dành cho người khiếm thị...
+em:tương tự strong
+u:gạch chân thông thường
+ins:nội dung muốn chèn vào
+s: đã xóa đi rồi và ko có thật
+del:chuẩn bị xóa:ví dụ giá khuyến mại và giá bán chưa có trước đó
+dự án nước ngoài -> yêu cầu chuẩn sematic
+
+thẻ inline không làm thay đổi định dạng span: non-sematic
+thẻ block không làm thay đổi định dạng div:non sematic
+
+webapp :chạy trên trình duyệt cách hoạt động giống phần mềm và thường được dùng để làm admin
+ -->
+<!-- Video 3 +4
+    thead    tbody    tfoot
+    để chuẩn sematic khi sử dụng table hoặc các thẻ khác tương tự
+
+    form: là 1 biểu mẫu cho phép người dùng nhập liệu và các thao tác (submit,search)
+    1 trang web có thể có 1 hoặc nhiều form và không được lồng nhau
+    trong form sẽ có nhiều trường(field)
+    trong form ko có nút submit vẫn gửi được (enter...)
+    các thuộc tính thẻ form
+    action:url req đến đâu
+    method: http method(get,post) mặc định get
+    get:lấy dữ liệu
+    post: đẩy dữ liệu
+    enctype="": content type dùng để upload file lên server 
+    form chỉ có 1 trường có thể submit bằng enter mà ko cần nút submit
+    form có 2 trường trở lên phải có nút submit mới có thể submit
+    type mặc định là text và thẻ input ko có type thì sẽ lấy type mặc định
+    for trong lable dùng để forcus vào input tương ứng
+    nội dung trong for sẽ trùng với id của thẻ input để có thể forcus vào 
+    lable lồng input sẽ bớt phải dùng for
+    thuộc tính value của thẻ input :text thể hiện giá trị cũ của field
+    input:number-> chỉ cho phép nhập số và chữ e(e là giá trị hữu tỉ)
+    (max,min trong input:number được sử dụng để validate value của field 
+    step dùng để tăng giảm do người dùng custom)
+    input:radio->yêu cầu name của các radio phải giống nhau thì mới có tác dụng(check 1)
+    và trong form ko chỉ có 1 nhóm radio nên cần đặt name để phân biệt
+    input:checkbox->name cùng tên để có thể lấy được nhiều giá trị của checkbox
+    radio và checkbox đều có thuộc tính value để backend lấy dữ liệu khi submit form
+    mặc định trong radio và checkbox là checked
+
+    ->name= thuộc tính và value =giá trị để submit  trong form
+
+    optgroup áp dụng trong trường hợp có nhiều option
+    được sử dụng trong select
+    option lấy thuộc tính hidden để ẩn giá trị option ko cần thiết đi
+    muốn chọn nhiều giá trị có thể dùng mutilple
+
+<form action="">
+    <label for="value">Chon gia tri</label>
+    <select name="select" id="select" >
+        <option value="" hidden>chon gia tri cu the</option>
+        <optgroup label="Nhom1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </optgroup>
+    <optgroup label="Nhom2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </optgroup>
+    <optgroup label="Nhom3">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </optgroup>
+    </select>
+    <button>Submit</button>
+</form> -->
+<!-- button  type=
+    submit:submit from
+    reset:nhập lại form
+    button:chính là button
+    chỉ có tác dụng trong thẻ form ngoài form ko tác dụng
+-->
+<!-- <header></header>
+<main>
+    <nav></nav>
+    <section>
+        <h1></h1>
+        <article></article>
+    </section>
+    <aside></aside>
+</main>
+<figure></figure>
+<figcaption></figcaption>
+<footer></footer> -->
+<!-- nguyên tắc đặt tên
+    class-id
+    chỉ chữ cái, số, dấu gạch ngang, gạch dưới
+    không bắt đầu bằng số
+    sử dụng danh từ
+    1 element chỉ có 1 id và có thể có nhiều class cách nhau khoảng trống
+    không đặt tên quá dài và ko viết tắt, ko lẫn lộn tiếng anh việt
+    ngắn gọn dễ hiểu
+
+    section: sử dụng chức năng để đặt tên
+    (slide,about,product,search...)
+    nên kết hợp các hậu tố: post-image, post-title...
+    ko đặt tên trùng với các từ 
+
+    id chỉ đặt khi tồn tại 1 vị trí duy nhất trong page ko có tính kế thừa
+    class có tính kế thừa css
+
+    tìm hiểu bem
+    block__element--modifier
+
+    3 cách đưa css vào html : inline,internal,external 
+
+-->
+<!-- <style> internal
+    h2{
+        color: red;
+    }
+</style> 
+      <link rel="stylesheet" href="./style.css"> 
+      external   
+      <h2 style="color: gray;">Nguyen Van Duc</h2>  
+      inline -->
+<!-- học Selecter
+        id,class,tagname
+        abc e->tất cả các thẻ e là con của abc
+        abc>e->e là con trực tiếp của abc mới có tác dụng
+        tagname.class-> bao nhiêu cấp cũng có thể css được
+        p~ul-> tác động vào tất cả thẻ p nằm sau thẻ ul không giới hạn thứ tự con
+        điều kiện sử dụng: ngang hàng và cùng 1 parent 
+        p,ul-> tác động vào cả p và ul
+        input:checked~span:tác động vào span phụ thuộc vào input
+        p+ul-> thẻ ul nằm ngay sau thẻ p
+
+        <a href=""></a>
+        có target chuyển đỏ : a[target]
+        chỉ [target] bất kì thẻ nào có target ->tác động
+        a[href="abc.com"]-> tác động chính xác thẻ a có href=abc.com
+        a[href^="a"]-> khớp đầu thẻ a có href=a tác động
+        a[href$="a"]-> khớp cuối thẻ a có href=a
+        a[href*="a"]-> khớp href include "a"
+
+        [class^="item-"]-> khớp đầu các class có "item-"
+        content>*-> chọn tất cả các thẻ là con trực tiếp (cấp 1) của content
+        THÀNH PHẦN GIẢ
+        :before :thành phần giả :inline
+        :after :thành phần giả: inline
+        :first-line: css dòng đầu tiên của đoạn p
+        :first-letter:chữ cái đầu tiề của đoạn p
+        :selecttion: css màu nền, chữ của đoạn p được chọn
+        LỚP GIẢ
+        .email:placeholder-> css phần placeholder trong input
+
+        :active->click chuột tồn tại tất cả thành phần
+        :forcus->click vào di chuột ra ngoài =ok , có thể used=tab chỉ tồn tại trong form
+        :hover->trỏ chuột tồn tại tất cả thành phần
+
+        biến bất kì thành phần nào cũng có forcus thêm thuộc tính tabindex
+        tabindex=<number> (number: số thứ tự của tab)
+
+        checked :một trạng thái của input:checkbox hoặc input:radio
+        disable :không thể chọn
+        ví dụ css cho disable: input[disabled] hoặc sử dụng lớp giả :disabled
+        css loại trừ bằng cách sử dụng lớp giả not ví dụ h2:not(.active)
+        first-child->cùng loại thẻ hoặc class id selector đầu tiên(last-child tương tự)
+        first-of-type :thẻ đầu tiên cùng kiểu với nhau hoặc duy nhất mỗi nó(last-of-type tương tự)
+        nth-child(n)-> n bắt đầu từ 1 : số thứ tự của element cùng cha
+        (2n+2): n chạy từ 0 -> chọn các phần tử chẵn
+        n là tham số cố định ko đổi
+        nth-of-type(n)-> n bắt đầu từ 1: n là số thứ tự của element cùng kiểu
+        
+
+-->
+<!-- <div class="nav">
+      <label for="red">red</label>
+      <label for="green">green</label>
+      <label for="blue">blue</label>
+      <label for="none">none</label>
+      <hr />
+      <input type="radio" name="select" id="red" hidden/>
+      <input type="radio" name="select" id="green" hidden/>
+      <input type="radio" name="select" id="blue" hidden/>
+      <input type="radio" name="select" id="none" hidden/>
+      <div class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut fuga
+        distinctio laborum eaque illo officiis quod, dolor laudantium dolorum.
+        Quo vitae eius blanditiis ex iusto consequatur excepturi doloribus
+        voluptatibus deleniti.
+      </div>
+    </div> -->
+<!-- video 5
+    pixel : đơn vị đo tuyệt đối
+    %: tương đối tỉ lệ với cha trực tiếp
+    em: tỉ lệ cha trực tiếp
+    rem: tỉ lệ với gốc(html)
+    vh: tỉ lệ height
+    vw:tỉ lệ weight
+    font-size không có %
+    color:đổi màu chữ văn bản (name,hex=#123456,rbg(),hsl())
+    rgba(zzx,yyy,zzz,a)->a:opacity
+
+    color:initial: màu kế thừa trình duyệt
+    color:inherit:màu kết thừa từ cha trực tiếp
+
+    font-size mặc định =16px
+    1pt=1.3px(cm,mm... giá trị tuyệt đối)
+    line-height: giãn dòng(độ cao dòng)(có đơn vị tương đối và tuyệt đối)
+    tương đối= line-height(number)* font-size
+    nạp font bằng 
+    @font-face {
+    font-family: roboto;
+    src: url(../font/Roboto/Roboto-Regular.ttf);
+}
+    và kiểm tra bằng f12
+    tên font từ 2 kí tự phải có "" và lúc gọi cũng thế
+    font-family:roboto,arial 
+    -> khi font roboto bị lỗi arial sẽ được thiết lập
+    trên thực tế import chỉ 1 font và set các loại font bằng cách sử dụng font-weight
+    nó sẽ nhận cái font-weight gần nhất và ko nên để cho trình duyệt tính toán nên để chính xác
+    còn nếu import nhiều loại font nó sẽ nhận font cuối cùng được import
+    letter-spacing: khoảng cách giữa các kí tự trong từ(có thể âm hoặc dương)
+    word-spacing: khoảng cách giữa các từ (tương tự)
+    text-decoration: custom link text(default:underline)(có thể kết hợp nhiều giá trị)
+    text-tranform:custom kiểu chữ(uppercase:hoa,lowercase:thường ,capitalize:hoa hết,none:dèault)
+    từ quá dài dẫn đến xuất hiện thanh cuộn: sử dụng word-wrap :break-word (default :normal )
+    text-indent: thụt vào đầu dòng của các đoạn(px)
+    text-align:center(giữa),justify(căn đều 2 bên)
+    text-align-last: css riêng cho dòng cuối cùng
+    muốn căn chỉnh đoạn text thì nó phải nằm trong thẻ block vì nó ko xác định được vị trí của nó trong khi w và h =content
+
+
+    CÁC THUỘC TÍNH LIÊN QUAN ĐẾN BACKGROUND
+    color
+    image url('...')
+    potision: center(center,left,right) center(center,left,right);
+    hoặc có thể set px theo x và y gốc top left 
+    hoặc có thể set theo % vẫn gốc top left
+    repeat (no-repeat :ko lặp;repeat-x:lặp theo x, y tương tự,repeat:lặp 2 hướng)
+    size:khi ảnh quá to so với trình duyệt(màn) -> những phần thừa bị bỏ đi
+    chỉnh size của back đó ko để w hay h thì default auto
+    background-size:cover -> height>width tính theo 100% height width auto(và ngược lại)
+     background-size:contain-> height<width tính theo 100% height, width auto(và ngược lại)
+    attachment: fix-> cố định back khi scroll(default :scroll)
+    -----------------------
+    background: image repeat potision / size attachment
+    -----------------------
+    khi sử dụng background nên sử dụng cả color và image nếu image ko lên thì còn color
+    (vấn đề giao diện)
+
+    css sprite: sử dụng background-potision để cắt từ 1 ảnh duy nhất theo tọa độ
+    -> giảm req tăng trải nghiệm
+
+    Border :tạo viền
+    width :px
+    style:solid :nét liền/ dash: đứt/dotted: dấu chấm/ double: 2 viền
+    color:
+    border 1px solid red;
+    tách thành từng cạnh :border-left/ border-right/border-top/border-bottom
+    hoặc chi tiết hơn :border-left-width/....
+    hoặc border-color: red green blue yellow
+
+    border-radius:top left /top right/bottom right/bottom left
+    hoặc top-left và bottom-right / top right và bottom left
+    có thể set border-top-left-radius:...
+
+    khi trình duyệt ra thuộc tính css mới mà w3c chưa công nhận thì trình duyệt phải thêm thuộc  tính
+    vender prefix mới được
+
+    w3c là 1 tổ chức đưa ra các tiêu chuẩn mà các dev phải tuân thủ 
+    thân thiện với các search engine
+
+    prefix chorme , safari : -webkit-
+    opera :-o-
+    firefox: -moz-
+    -->
+<!-- video 6
+    width : height
+    px đơn vị tuyệt đối
+    % đơn vị tương đối tỉ lệ dựa vào thành phần cha trực tiếp
+    vw và vh: viewport width và viewport height
+    tỉ lệ theo body
+    viewport: là khung nhìn có thể nhìn thấy trên trang web ko tính các thành phần bị ẩn
+    vw: khung nhìn theo chiều rộng
+    vh: khung nhìn theo chiều cao
+    thẻ inline có wh theo content-> muốn set chuyển về inline-block hoặc block
+    thẻ img cũng là inline nhưng lại set được wh ?
+    ->về mặt lý thuyết các thẻ inline không đặt được wh hay margin được
+    inline có 2 nhóm thẻ:
+    replace: img chỉ là khung ảnh ko có nội dung khi đó nó phải tải nội dung từ source về sau đó replace vào khung
+    -> có khung trắng bên ngoài -> đặt được wh (trình duyệt đối xử với nó như thẻ inline-block)
+    non-replace:ko đặt được wh 
+    các thẻ img cách nhau 1 khoảng trắng trên dưới trái phải?
+    ->
+
+    cách khắc phục :
+    sử dụng fontsize thẻ cha =0
+    vertical-align:bottom
+    display:block
+
+    max-width:thường sử dụng với img khi không biết kích thước của ảnh với khung
+    thường là 
+    img{
+        max-width:100%;
+        height:auto;
+    }
+    min-width tương tự : kích thước thực phải >= min-width
+    note:chỉ có tác dụng với block
+
+    OVERFLOW:
+    cho các content tràn ra ngoài block cha
+    overflow:hidden: ẩn đi
+    overflow:scroll: tạo thanh cuộn(luôn tạo)
+    overflow:auto:chỉ khi đủ điều kiện phát sinh thanh cuộn mới xuất hiện thanh cuộn
+    phát sinh thanh cuộn ngang khi chiều rộng của con lớn hơn cha
+    giá trị mặc định overflow:visible
+    chỉ ẩn thanh cuộn ngang : overflow-x:hidden...(tương tự)
+
+    opacity:độ mờ (0->1) 0:nó vẫn chiếm không gian và chỉ bị mờ đi
+    tranparent chỉ có thể mờ màu ko thể mờ ảnh
+    filter(px)
+    filter:grayscale(chuyển đen trắng(xám))
+    filter:blur(nhòe)
+
+    padding: top right left bottom
+    padding top:50% tỉ lệ theo width của thẻ cha gần nhất
+    width= padding+border+content
+    margin-top 50%-> theo width của thành phần cha gần nhất
+
+    -->
+<!-- video 7
+    tất cả các thẻ html có forcus thì sẽ có outline
+    loại bỏ bằng outline:none
+    box-sizing:border-box để tránh vỡ hay tràn khung
+    outline khác với border kết hợp box-shadow
+
+    xây dựng layout chia làm 2 css
+    reset css:sử dụng thư viện nomalize
+    base css: h1,h2,h3..., a,form...
+    cái nào sử dụng nhiều -> base
+
+    chia layout theo trình table->inline-block
+
+    trong khóa học không sử dụng float để chia layout mà dùng để hiển thị chữ xung quanh ảnh
+        float: trôi về bên trái hoặc phải theo thành phần cha gần nhất
+        
+        giả định có border thì dùng float sẽ mất border 
+        fix=overflow:auto -> sinh thanh cuộn nếu content dài
+        -> kĩ thuật prefix: chống trôi
+        chỉ cần thành phần nằm sau thành phần khác có sử dụng float-> trôi
+        hoặc trình duyệt còn chỗ trống->trôi
+        clear:right,left,both 
+        chỉ cần clear thành phần trên, phần dưới ko phải clear nữa
+        định nghĩa 1 class để clear float cho tiện lợi
+        .clearfix{
+            //block
+            clear:both
+            display:block
+        }
+        cach 2: sử dụng after {
+            content:''
+            display:block
+            clear:both
+        }//tien hon
+        ảnh bao quanh chữ : float
+        trường hợp ảnh ít hơn chữ (height )thì hợp lý nhưng ảnh nhiều hơn chữ thì cần clear fix ảnh bằng afrer nữa
+        trường hợp yêu cầu ảnh quanh chữ có hình đặc biệt: sử dụng shape-outside
+        trường hợp cần chữ bao quanh ảnh(cả bên trên ảnh):
+
+        display:thay đổi cách hiển thị của 1 thẻ html
+        none:mất không gian
+        khác với opacity:vẫn còn không gian bị chiếm
+        block:
+        inline:nằm trên 1 hàng ko set được padding margin top bottom 
+        inline-block:có mọi thứ của block (ko phát sinh hàng mới)
+        ẩn đi nhưng ko mất không gian kết hợp với opacity để làm animation
+        visibility:hidden;
+        giá trị mặc định : visible 
+
+        potision:thay đổi vị trí của 1 element
+        relative: tương đối
+        absolute:tuyệt đối
+        fixed: cố định khi scroll
+        static: ko có postison
+        các thuộc tính chỉ có tác dụng khi có postision
+        top left right bottom z-index
+
+        hàm calc(không thể sử dụng số âm và phải tính toán trước)
+        và ko được viết liền
+        topleft:50%-> theo chiều cao và rộng của thành phần cha trực tiếp
+        marginpadding:50%-> luôn tỉ lệ với width
+        nếu ko set relative thì auto nhận body làm relative(chỉ tìm thẻ block)
+        width auto trong block : mà ko có left right -> kéo full theo width 
+        height auto mà ko có top bottom-> full height
+        nếu xét height và width thì nó sẽ luôn ưu tiên top left
+        set giá trị chung cho top left right bottom : inset:0
+        -> top 0 left0 right0 bottom 0
+        potision:fixed chỉ có 1 cha là body(mặc định)
+        có thể set element khác làm cha 
+        mặc định có potision nằm trên element ko có potision 
+        cùng có pos mà ko có z-index thì tuân thủ html
+        còn lại theo z index(x-index <0)-> không thể click
+
+        menu đa cấp: phân tích html và selector(có thể mở rộng cho nhiều cấp)
+    -->
+<!-- video 8
+      có nhiều giá trị và cách thay đổi list style của ul li
+      list-style-potision:mặc định là outside dấu chấm tròn đen bên ngoài
+      inside bên trong
+      list-style-type:roman,decimal...
+      có thể gộp: list-style: inside upper-roman
+      có thể thay thế bằng ảnh bằng cách sử dụng before/after 
+      2 cách: sử dụng background của li hoặc before của li
+
+      cách 1:background url no-repeat  left center / 16px;
+      padding,margin...
+      cách 2:before 
+      vẫn có background cho before nhưng cần set width height cho ảnh
+      cần float cho before và clear cho li để li sau ko bị đẩy
+      hoặc dùng flex
+      hoặc vertical align middle
+
+      display:list-item
+      tương tự ul li nhưng có thể biến thẻ con thành ul li
+      -> không nhất thiết phải sử dụng ul li
+
+      thêm file all.css vào folder css và đặt file webfotn bằng cấp để sử dụng icon hợp lý
+      có thể css icon (font: thêm tiền tố + -nx để zoom in/out icon(font-awesome định nghĩa))
+
+      chèn icon vào đầu li bằng cách sử dụng before / after 
+      content:"\f105";
+      font-family:"Font Awesome 6 Free"
+      font-weight:900;/ nếu fw khác mặc định
+      có thể sử dụng background,border,padding,...
+
+      custom checkbox hết ở giữa video 8
+      khó ở selector và phân tích html
+
+      Flex:một kĩ thuật dàn layout bố cục cho page
+      cấu tạo: 
+      trục :2 : trục chính (main) trục vuông góc(cross)
+      vị trí đâu tiên theo trục :start cuối end
+      cross:left và right
+      main:top và bottom
+      thẻ bọc : flex-container bọc các flex-item
+
+    display:flex (kích hoạt flex) flexible box modul ở flex container
+    flex-direction : chọn hướng(trục) :row: trục nằm ngang
+    row-reverse:trục nằm ngang đảo ngược
+    column: trục đứng, column-reverse: trục đứng đảo ngược
+
+    justify-content: căn chỉnh các item theo hướng song song với trục chính
+    flex-start
+    flex-end
+    center
+    space-around: khoảng cách với lề bằng 1/2 khoảng cách giữa 2 item
+    space-between: sát viền
+    space-evenly:bằng nhau
+
+    align-item:căn chỉnh từng item theo hướng vuông góc với trục chính
+    default:stretch:kích thước theo container
+    flex-start:trên
+    flex-end:dưới
+    center:giữa
+    base-line:căn chỉnh theo base-line của content
+
+    flex-wrap :tổng các item vượt quá container-> xuống dòng
+    mặc định:no-wrap:ko xuống
+    wrap-reverse: đảo ngược wrap 
+
+    align-content:chỉ áp dụng với từng hàng và cột thêm wrap nếu có
+    căn chỉnh hàng và cột
+    stretch:default 
+        cơ bản giống aline-item nhưng ko có tác dụng căn chỉnh các item 
+    
+    gap:chỉnh khoảng cách giữa các hàng và cột
+    1 đối số:hàng=cột
+    2 đối số: row gap và column gap
+
+    flex-grow:giãn đều các item để lấp vào chỗ còn trống trong container
+    đối số là số nguyên:dùng để chia tỉ lệ chứ ko phải gấp n lần
+    dựa vào kích thước ban đầu và kích thước phần còn trống
+    khi vượt quá kích thước container thì nó sẽ tự động co lại
+    giá trị mặc định là 0 ->ko giãn
+
+    flex-shink:ngược với flex grow và chỉ dùng 1 cái
+    tự động co lại:1 giá trị mặc định
+    không tự động co lại:0:áp dụng khi làm slide, hoặc thẻ nav trên mobile
+    giá trị càng lớn có lại càng bé
+
+    flex-basic : vẫn tác động vào các item
+    giống width trong trường hợp flex direction :row 
+    height khi column
+    linh hoạt dựa vào flex-direction 
+    chặn bởi min-width và max-width khi là row
+    min-height và max-height khi là column
+
+    3 thằng trên được viết tắt: flex :grow shink baisc (chỉ cần grow đứng trước shink là được)
+    -->
+
+<!-- video 9
+        align-self:áp dụng với 1 item
+        flex-end:
+        flex-start
+        center:
+        baseline
+
+        sắp xếp:mặc định theo html nhưng
+        order :nhận vào 1 số nguyên đánh thứ tự item trong container
+        sắp xếp logo,nav... từ pc đến mobile
+
+        counter:sử dụng để đếm item
+        thường dùng vào before của item
+        tạo bộ đếm: count-reset:tên bộ đếm(khởi tạo ở thành phần cha trực tiếp)
+        thực hiện đếm:counter-increment:tên bộ đếm
+        count(tên bộ đếm) tại before 
+
+        transition:dùng để delay quá trình thay đổi giá trị của thuộc tính css
+
+        transition-property:thuộc tính cần delay
+        transition-duration:thời gian (s)
+        chỉ tác dụng với thuộc tính có giá trị là số mới tác động được
+        ngoại lệ color:giá trị màu là số
+        transition-delay:đợi sau n giây rồi mới transition 
+        transition-timing-funciton: linear:chuyển động đều(mặc địng)
+        ease : chậm nhanh chậm
+        ease-in:tăng tốc dần
+        ease-out:giảm tốc dần
+        ease-in-out:chậm nhanh chậm
+        có thể set giá trị nhanh chậm 
+        cubic-bezier:(x,y,z): <1 và số càng lớn chuyển động càng chậm 
+        transition :thuộc tính(chỉ 1) thời gian /cách chuyển động
+        nếu có nhiều hơn 1 thuộc tính cần đưa vào transition-property
+
+        sử dụng overflow kết hợp traansition để làm các hiệu ứng animation
+        <button class="btn"><span>Dang ki khoa hoc</span></button>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        outline: none;
+      }
+      .btn {
+        padding: 10px 30px;
+        display: block;
+        margin: 30px auto;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 99px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn span {
+        position: relative;
+        z-index: 1;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 100%;
+        background-color: red;
+        border-radius:  99px 0 0 99px  ;
+        transition: right 0.4s linear;
+      }
+      
+      .btn:hover::before {
+        right: 50%;
+      }
+      .btn::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 100%;
+          bottom: 0;
+          right: 0;
+          background-color: yellow;
+          border-radius: 0 99px 99px 0;
+          transition: left  0.4s linear;
+        }
+        
+        .btn:hover::after {
+          left: 50%;
+        }
+    -->
+<!-- toggle button 
+    <label class="switch">
+      <input type="checkbox" />
+      <span class="btn"></span>
+      <span class="bg"></span>
+    </label>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+.switch {
+  display: block;
+  width: 60px;
+  height: 30px;
+  border-radius: 99px;
+  background-color: gray;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+}
+.switch input {
+  display: none;
+}
+.switch .btn {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  transition: left .4s ease;
+  z-index: 1;
+}
+.switch input:checked + .btn {
+  right: 0;
+  left: calc(100% - 30px);
+}
+.switch .bg {
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  border-radius: 99px;
+  opacity: 0;
+  transition-property: right opacity;
+  transition: .4s ease;
+}
+.switch input:checked ~ .bg {
+  right: 0;
+  opacity: 1;
+}
+    tranform:rotate(xoay(Deg))
+    có thể tranform rotateX,Y,Z
+    mặc định z
+    scale: phóng to (so sánh với 1)
+    có 3 tham số theo x,y,z
+    skew:nghiêng(deg)
+    vẫn x,y,z
+    translate:di chuyển lấy element đó làm gốc (tỉ lệ theo chính nó)
+    tranform -origin :action theo vị trí (x,y)
+-->
+
+<!-- video 10
+  animation:
+  @keyframe:kịch bản chuyển động của hiệu ứng elemt chuyển động theo giai đoạn
+  from:0%
+  to:100%
+  animation-name:tên keyframe
+  animation-duration :thời gian (s,ms)
+  animation-iteration-count:số lần (ifinity:vô cực)
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+.box {
+  width: 100px;
+  height: 50px;
+  margin: 10px auto;
+  rotate: 180deg;
+  display: flex;
+  gap: 10px;
+}
+.box > span {
+  display: inline-block;
+  width: 20px;
+  background-color: blue;
+  border-radius: 5px;
+  animation-name: move;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+} 
+.box>span:nth-child(4){
+    animation-delay: .1s;
+}
+.box>span:nth-child(3){
+    animation-delay: .2s;
+}
+.box>span:nth-child(2){
+    animation-delay: .3s; 
+}
+.box>span:nth-child(1){
+    animation-delay: .4s; 
+}
+@keyframes move {
+  from {
+    height: 100%;
+  }
+  50%{
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+  Biến trong css:
+  biến toàn cục
+  biến cục bộ
+  khai báo toàn cục
+  :root{
+    --primary-color:red;
+    --second-color:blue;
+  }
+  p{
+    color:var(--primary-color)
+  }
+  khai báo biến cục bộ
+  -chỉ khai báo trong selector mong muốn và 
+  sử dụng từ cấp selector đó trở xuống(các cấp con)
+  biến cục bộ trong selector con sẽ trở thành biến toàn cục
+:root{
+    --primary-color:red;
+}
+p{
+    color:var(--primary-color);
+}
+  các action hover,focus... ko nên tạo thêm biến để tốn thêm tài nguyên
+  mà nên set lại giá trị của biến (hạn chế thêm biến)
+-->
+<!-- video 11
+  sử dụng thư viện animate.style  và wow.js để tạo các hiệu ứng khi vào web va nó chỉ chạy 1 lần
+    <p class="animate__animated animate__bounce">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto velit debitis blanditiis nihil enim ipsa, unde possimus quis voluptate deleniti non ullam reprehenderit? Ut, ad consequuntur nobis voluptates exercitationem amet.</p>
+cần thêm animate__animated vào class và chọn hiệu ứng ví dụ animate__bounce để animate có thể hoạt động
+web load xong mà có quá nhiều hiệu ứng sẽ gây khó chịu
+animation.style đã có sẵn keyframe chỉ tích hợp vào animation của css để chạy thôi
+
+đổ khối :box-shadow :x-offset,y-offset,blur,spread,color
+box-shadow: <giá trị theo trục x> <giá trị theo trục y> <blur:độ nhòe> <kích thước của bóng> <màu sắc>
+  thường thì giao diện fixma đã có sẵn box-shadow nên chỉ cần copy về thôi
+  có thể tham khảo box-shadow-css...(web )
+
+đổ bóng chữ: text-shadow so với box-shadow chỉ thiếu spread
+
+dải màu :backgroudn-gradient:
+2 loại:linear từ 1 hướng hoặc từ tâm ra: radial
+có thể sử dụng:cssgradial.io
+
+
+responsive : 
+web thích ứng với all thiết bị
+dựa theo kích thước màn hình 
+phân biệt responsive với adaptive
+responsive sử dụng css(@media)
+breakpoint: là 1 điểm dừng kích thước tại đó giao diện sẽ thay đổi
+và không có brakpoint cố định cho tất cả dự án
+
+Các breakpoint phổ biến:
+576px
+768px
+992px
+1200px
+1400px:áp dụng chủ yếu với máy tính
+dựa vào dự án nếu breakpoint lỗi thì phải tự tìm breakpoint mới phù hợp với dự án
+
+Media query
+@media all/screen/print and (min width /max width : breakpoint){
+  //all là cả screen và print
+  selector{
+    code css
+  }
+}
+cần có meta name=viewport để có thể nhân responsive
+@media screen and (max width:1200px){
+  tại width <=1200px màn hình sẽ được quyết định bởi css này
+  desktop-first:từ lớn xuống nhỏ
+}
+@media screen and (max-width:768px ){
+  đến width<=768px thì tương tự...
+}
+khuyến khích sử dụng mobile first 
+tạo 1 menu có responsive
+-->
+<!-- video 12 
+  trường hợp code css lặp lại class cha-> sử dụng scss
+  trình duyệt không thể hiểu được scss
+
+  .card{
+    width: 20px;
+    height: 20px;
+    .card-title{
+        font-size: 16px;
+    }
+    không có dấu & hiểu card-title là con của card
+    .card{
+    width: 20px;
+    height: 20px;
+    &-title{
+        font-size: 16px;
+    }
+}-> đã có cha và sử dụng & để nối vào con-> code sinh ra ngắn hơn
+}
+    :hover{
+     ->hover vào tất cả thẻ con bên trong card   
+    }
+    &:hover{
+      ->hover:cho card
+    }
+
+    :hover vào after của card
+    &::after:hover
+        font: {
+        size:10px;
+        family:abc
+    }có thể nối thuộc tính như vậy
+
+    BEM:block__element--modifier
+    ví dụ :
+    card card--infor 
+      card__img card__img--big
+        img: ...
+      card__title
+
+Biến trong scss:khai báo bằng $ nhưng chỉ xuất hiện bên scss ko xuất hiện bên css
+vẫn hiểu local và global như trường
+khai báo partial trong scss _tên.scss nó sẽ ko convert sang css mà chỉ để import thôi
+sử dụng: @import 'tên';
+
+@extend h1/#abc/.abc;
+kế thừa css của selector 
+
+@placehoder:
+khi chúng ta chỉ cần kế thừa selector ko cần dùng đến mà chỉ cần làm template
+ko dùng #abc hay .abc -> %abc ->selector abc sẽ ko được sinh ra bên css
+
+@mixins import như partial
+
+@mixins không tham số 
+@mixins tên{
+  cách tạo
+  width:10px;
+}
+sử dụng:
+@include tên;
+
+có tham số 
+@mixins tên(@width,@height){
+  cách tạo
+  width:10px;
+}
+sử dụng:
+@include tên(150px,150px);
+nếu để đối số mặc định thì tên(@width:10px,@height:10px)
+và nếu muốn 1 đối số cho 2 tham số thì tên(@width:10px,@height:@width)
+@include tên(10px)
+
+.container {
+  --column:4;
+  --spacing:10px;
+  display: flex;
+  row-gap: var(--spacing);
+  flex-wrap: wrap;
+  margin-left: calc(var(--spacing) * -1);
+  .item {
+    background-color: #ffa500;
+    text-align: center;
+    padding: 20px;
+    width: calc(100% / var(--column) - var(--spacing));
+    margin-left: var(--spacing);
+  }
+}
+chia layout bằng flex 
+@import "grid";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+.container {
+  @include gird(4, 10px);
+  .item {
+    background-color: blueviolet;
+    padding: 20px;
+    text-align: center;
+  }
+}
+.list {
+  @include gird(3, 20px);
+  margin-top: 20px;
+  .item {
+    background-color: green;
+    padding: 20px;
+    text-align: center;
+  }
+}
+import và sử dụng mixins
+viết mixins có thể tái sử dụng vì nhiều proj vẫn chia layout bằng flex
+
+@import là chỉ sử dụng mixins đó còn
+@use là nạp tất cả các mixins lại thành 1 biến tên là mixins
+-> sử dụng bằng cách @include mixins.grid
+khắc phục tình trạng đặt trùng tên nhau bởi có thể phân biệt bằng tên mixins
+reponsive trong scss
+@mixin screen($device){
+    @if $device== mobile{
+        @media screen and (max-width:576px){
+            @content;
+        }
+    }
+    @if $device== tablet{
+        @media screen and (min-width:576px) and (max-width:992px){
+            @content;
+        }
+    }
+    @if $device== pc{
+        @media screen and (min-width:992px)and (max-width:1200px){
+            @content;
+        }
+    }
+}
+
+-->
+<!-- video 13 
+
+  /*comment css*/
+  //comment scss
+
+  biến trong scss bắt đầu = $
+  cũng có thể tạo biến có giá trị bằng seletor
+  bằng cứ pháp nội suy trong js
+  $footer:".copyright";
+  $property:color;
+
+  sử dụng
+  .footer{
+    padding:10px 0;
+    #{$footer}{->.copy-right{}
+      text-align:center;
+      #{property}:grey;-> color:gray
+    }
+  }
+
+  trường hợp cần nối thêm đơn vị như + string
+  $size:10;
+  sử dụng : font-size:#{$size}px hoặc width:$size + 0% hoặc #{$size + 0%}
+
+  toán tử trong scss:toán tử số học , toán tử so sánh, toán tử lý luận (and, or , not), toán tử gán
+  nối chuỗi trong scss : +
+  $prefix:".col-"
+  $breakpoint: "md"
+  $number:1;
+  #{$prefix+$breakpoint+"-"$number}{
+    ->.col-1-md{
+      
+    }
+  }
+  if else : nếu ko chạy vào trường hợp nào if else sẽ lỗi
+  ví dụ 
+  $prefix: ".col";
+$breakpoint: "";
+$number: 1;
+
+$selector: "";
+@if $breakpoint != "" and $number>0{
+    $selector:$prefix+"-" +$breakpoint+"-"+ $number;
+}
+@else if $number>0{
+    $selector:$prefix+"-"+$number;
+}@else{
+    $selector:$prefix;
+}
+#{$selector}{
+    width: 50%;
+}
+@extend %box ;để sử dụng placehoder class %box đã được định nghĩa
+còn sử dụng @extend .box thì sẽ thừa ra selector ko để làm gì 
+trong mixins có thể có selector còn extend thì chỉ có thuộc tính
+và ko có selector
+
+ví dụ mixins có thể làm được nhưng placehoder thì ko
+%box{
+    background-color: red;
+}
+@mixin center($selector){
+    #{$selector}{
+        margin: 0 auto;
+    }
+}
+
+.news{
+    font-size: 16px;
+    @include center('.container');
+    @extend %box;
+}
+
+for through
+@for $i from 1 through 12{
+    .col-#{$i}{
+        width: $i*10%;
+    }
+}
+@each in với 1 giá tri
+$sizes:20,40,60,80;
+@each $size in $sizes{
+    .col-#{$size}{
+        width:#{$size*5%};
+    }
+}
+each với nhiều giá trị
+có thể sử dụng :$sizes:(smail,20),(medium,40)...
+@each $name,$size in $sizes có thể lấy được nhiều giá trị gán vào nhiều biến
+
+hoặc each với giá trị map:$sizes:(smail:20,medium:40...);
+dạng (key:value)
+dùng gird để chia lay out
+:root {
+  --container-width: 1200px;
+  --column-space:20px;
+
+}
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--column-space) * -1 / 2);
+    //căn chỉnh row
+}
+.row [class^='col-']{
+    --column-number: calc(12 / var(--column-size));
+    --column-width:calc(100% / var(--column-number));
+    flex-basis: var(--column-width);
+    max-width: var(--column-width);
+    padding: 0 calc(var(--column-space) / 2);
+    //căn chỉnh item
+}
+.col-1{
+    --column-size:1;
+}
+.col-2{
+    --column-size:2;
+}
+.col-3{
+    --column-size:3;
+}
+.col-4{
+    --column-size:4;
+}
+.col-5{
+    --column-size:5;
+}
+.col-6{
+    --column-size:6;
+}
+.col-7{
+    --column-size:7;
+}
+.col-8{
+    --column-size:8;
+}
+.col-9{
+    --column-size:9;
+}
+.col-10{
+    --column-size:10;
+}
+.col-11{
+    --column-size:11;
+}
+.col-12{
+    --column-size:12;
+}
+Dùng scss để responsive @for $i from 1 through 12 {
+  .col-#{$i} {
+    --column-size: #{$i};
+  }
+}
+$breakpoints: (
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
+);
+@mixin column($name: "") {
+  $prefix: ".col-";
+  @for $i from 1 through 12 {
+    $selector: $prefix + $i;
+    @if ($name != "") {
+      $selector: $prefix + $name + "-" + $i;
+    }
+    #{$selector} {
+      --column-size: #{$i};
+    }
+  }
+}
+@include column();
+
+@each $name, $breakpoint in $breakpoints {
+  @media screen and (min-width:#{$breakpoint}px) {
+    @include column($name);
+  }
+}
+<section class="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+            <div class="product-item">
+              <h3>Product 01</h3>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+            <div class="product-item">
+              <h3>Product 02</h3>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+            <div class="product-item">
+              <h3>Product 03</h3>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+            <div class="product-item">
+              <h3>Product 04</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section >
+      <div class="container">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, assumenda labore officia rem aliquam dicta repellendus deleniti delectus totam maxime tempora laboriosam, fugit quis distinctio aut, voluptas ut ipsam inventore.
+      </div>
+    </section>
+-->
+<!-- video 15 JS
+viết js trước thẻ đóng body vì cần 
+html tải xong và js load sau khi tải
+ko bị lỗi giao diện css
+có thể nhúng js vào html bằng internal, external,inline(event)
+ví dụ tải trang xong <body onload=...>
+  va file js không thể chạy độc lập
+  (sau sẽ học chạy dưới server)
+
+  VARIABLE
+  lưu trữ dữ liệu tạm thời trên ram
+  không cần khai báo kiểu dữ liệu
+  khai báo =var 
+  tên biến: ko dấu,hoa thường,gạch dưới...
+  bắt đầu bắng số là sai
+
+  quy tắc camelCase
+  từ từ thứ 2 trở đi viết hoa chữ cái đầu(đặt tên biến , hàm)
+  quy tắc PascalCase
+  viết hoa chữ cái đầu mỗi từ(Đặt tên class)
+  quy tắc underscore
+  gạch dưới giữa 2 từ (đặt tên hằng...)
+
+  có thể khai báo từng biến hoặc nhiều biến trên 1 dòng 
+  hoặc khai báo gán luôn
+
+  hiển thị biến có giá trị là chuỗi html trên giao diện web 
+  document.write (variable);
+
+  Nối biến
+  có thể nối bằng +
+  bên ngoài sử dụng "" thì bên trong không được sử dụng "" nữa không thể xuống dòng khi nối
+  cú pháp template string `` nội suy-> `abc ${variable}xyz` xuống thoải mái
+  muốn thể hiện dấu backtich trong `` cần thêm \`string`\ để hiển thị chuỗi string
+
+  Toán tử và biểu thức
+  Operator
+  1.toán tử số học +-*/ ** % ++ --
+  dấu + vừa là toán tử vừa là ép kiểu hoặc parserInt() ví dụ c=+a + b;
+  tiền toán tử ++count và hậu toán tử count++
+  -> lấy giá trị trước khi tăng và sau khi tăng
+
+  2.Toán tử logic
+  <,>,<=,>=,==,===,!=,!==
+  ==:chỉ so sánh giá trị
+  ===:so sanh cả giá trị và kiểu dữ liệu
+  trong điều kiện so sánh nên viết :giá trị  <toán tử> variable  để chắc chắn code ko lỗi logic
+
+  3.toán tử kết hợp (and,or,not)
+  &&: đúng khi all đều đúng, duyệt từ trái qua phải trả về falsy đầu tiên nếu không có falsy trả về giá trị toán hạng cuối cùng
+  ||: đúng khi 1 trong 2 đúng, duyệt từ trái qua phải trả về  truthy đầu tiền nếu ko có truthy trả về giá trị cuối cùng
+  !=:khác !==
+
+  4.toán tử gán : =
+  +=,-=,*=,/+,%=...
+  5.Toán tử 3 ngôi
+  logic?truthy:falsy
+  nếu ko có ngoặc -> mặc định sẽ ôm toàn bộ biểu thức bên trái và phải toán tử 3 ngôi
+  6.Toán tử nulish ??
+  a??b: a= null hoặc undefined -> lấy b ngược lại lấy a
+
+  7.Truthy,Falsy: chuyển các biến và giá trị về dạng boolean 
+  falsy:0 "" false undefined NaN null
+  truthy:còn lại
+
+  8.Toán tử &&
+  tìm giá trị falsy đầu tiên nếu ko trả về cuối cùng giá trị
+  9.Toán tử ||
+  tìm giá trị truthy đầu tiên nếu ko trả về giá trị cuối cùng
+
+
+  Điều kiện 
+  if else 4 loại
+  if thiếu,if đủ có else, if nhiều nhánh (else if),if lồng if
+  switch case default luôn có sẵn và cần break trong các case
+  có thể có nhiều case cùng ra 1 result và chỉ có 1 break
+
+  note:xác định số nguyên : variable %1===0 
+  note:ép kiểu về số a=+a; ép kiểu lỗi trả về NaN
+
+  Vòng lặp:
+  Lặp với số lần lặp xác định trước:for
+  Lặp với số lần lặp ko xác định trước: while ,do... while
+  continue:bỏ qua index hiện tại và các câu lệnh dưới nó
+  break:thoát vòng lặp với điều kiện
+
+  Function:gom 1 đoạn chương trình con lại tái sử dụng -> hàm
+  đặt tên:camelCase hoặc động từ get,set...
+
+  function: hàm có tham số và hàm ko tham số
+  khi định nghĩa hàm bằng tham số
+  khi gọi hàm truyền vào đối số 
+
+  hàm có giá trị trả về (ở một số ngôn ngữ gọi là thủ tục)
+  hàm không có giá trị trả về(return)
+  các câu lệnh sau return ko được chạy
+
+  Biến toàn cục và biến cục bộ được xác định lúc gọi hàm 
+-->
+<!-- video 17 
+  Expression function: hàm không tên hoặc hàm ẩn danh
+  js cho phép gán 1 function vào 1 biến và biến đó là tên hàm 
+  log biến -> trả về nội dung hàm
+  thêm ()-> gọi hàm 
+  trường hợp biến là hàm trùng với với khác sử dụng typeof function
+  trong js function cũng là 1 kiểu dữ liệu
+
+  IIFE -> ham chay luon ko cần tên
+  (function(name){
+    log(name)
+  })("duc")
+  -> log ra duc 
+
+  nếu ko muốn khai báo nhiều tham số để hứng nhiều đối số có thể sử dụng:
+  log(arguments) -> result không phải là mảng và nó lấy hết tất cả đối số 
+  và ko truyền vào tham số nào cho hàm
+  ko hoạt động trong es6 arrow function
+
+  ko muốn lấy hết toàn bộ đối số
+  sử dụng ...args->rest parameter
+  truyền vào function(msg,...args){
+    log(msg), log(args)
+  }
+
+  định nghĩa 1 hàm gán vào 1 biến gán tiếp biến khác bằng biến hàm
+  -> gọi biến = gọi biến hàm(người có nhiều tên)
+  -> giúp chia sẻ dữ liệu
+
+  gọi hàm theo kiểu callback
+  truyền vào đối số là 1 hàm phụ thuộc vào hàm bọc bên ngoài khi nào chạy
+  không gọi lần lượt 2 hàm vì js là ngôn ngữ bất đồng bộ (2 hàm không chờ nhau)
+
+  gọi hàm chủ động
+  gọi hàm bị động
+
+  xử lý bất đồng bộ->gọi hàm theo kiểu callback
+
+  tạo 1 hàm ko tham số để gọi hàm có tham số và sử dụng spread
+var getA=function(fn,...args){
+    console.log("getA");
+    fn(...args);
+}
+var getB=function(name){
+    console.log("getB",name);
+}
+var callGetB=function(){
+    getB("Van duc");
+}
+// getA(callGetB);
+getA(function(name){
+console.log("getB",name);
+},"vanduc")
+
+setTimeout và setInterval cũng là bất đồng bộ
+truyền vào 1 hàm với các đối số theo sau
+settimeout(funciton(name){
+  log(name)
+},1000,"vanduc");
+
+đối với setInterval có clearinterval(id) với id =setinterval(function(...))
+
+hàm con lồng trong hàm chỉ có thể chạy trong hàm cha
+và hàm con được sử dụng tham số,biến toàn cục,cục bộ của hàm cha
+gọi hàm cha->auto hàm con chạy ko kiểm soát
+kĩ thuật return về hàm con -> closure
+var sum=function(a){
+  return function(b){
+    return a+b;
+  }
+}
+->kế thừa dữ liệu hàm con được sử dụng giá trị biến a của hàm cha
+add=sum(10);
+log(add)->funciton(b){
+  return a+b;
+}
+
+result=add(10)
+log(result)->20
+
+Đệ quy chính là việc gọi lại hàm đang định nghĩa
+Các kiểu dữ liệu trong JS:nguyên thủy và tham chiếu
+Nguyên thủy :number string boolean bull undefined symbols
+tham chiếu: obj,func,arr,date,collections
+
+String:khai báo 3 cách
+c1:var fullname="vanduc"
+typeof fullname=string
+c2:fullname=String("vanduc")
+c3:fullname=new String("vanduc")
+
+String là 1 hàm tạo để định nghĩa các phương thức và thuộc tính xử lý chuỗi 
+typeof String=function 
+
+Để định nghĩa các phương thức, thuộc tính của 1 hàm tạo dùng Prorotype
+các hàm có sẵn String.prototype
+
+c1 vẫn ổn vì khi 1 biến là kiểu dữ liệu string thì máy tự động tạo ra 1 obj tạm thời 
+để có thể truy cập vào all phương thức thuộc tính của hàm tạo String
+-> sử dụng chuỗi giống với sử dụng obj 
+ví dụ khi truy cập vào biến fullname-> tạo 1 obj fullname2 để truy cập vào pt và tt
+
+-->
+
+<!-- video 18
+array không phải kiểu dữ liệu mà nó là obj (được build từ obj)
+array bao gôm:index và element
+index: tăng đều tuần tự
+element:giá trị của phần tử
+
+khai báo mảng: var user=[]; hoặc var user=new Array[];
+hàm tạo của array là Array
+
+3 trường hợp kiểm tra type of trả về obj:
+arr,obj,null
+log(array.prototype)= prototype được build trực tiếp từ obj
+log([array])=prototype được build từ bản thân array
+
+kiểm tra 1 biến có phải là mảng hay ko
+Array.isArray(users)
+
+for in trả về index có thể lấy element bằng cách users[index]
+for of trả về element
+
+SỬ DỤNG KĨ THUẬT CLONE MẢNG SAU ĐÓ THÊM SỬA XÓA THAO TÁC VỚI MẢNG
+
+có thể gán arr["a"]="vanduc"
+sau đó gọi for in như bth
+
+
+2 loại khởi tạo obj:literal và hàm tạo
+cấu tạo key:value
+nếu key có 2 từ trở lên cần thêm - và ""
+ví dụ obj có cả thuộc tính và phương thức
+
+var user={
+    name:"van duc",
+    getName:function(){
+        return"Nguyen van duc";
+    },
+}
+nếu thêm vào obj key-value chưa có thì thêm mới có thì thay đổi
+xóa key  delete user.key
+//truy cập vào key của obj
+user.name
+user.getName
+thêm key cho obj 
+user.age=23
+user["country"]="viet nam";
+s
+lấy all key in obj= for in(nhược điểm lấy all trong cả prototype)
+lấy value của key user[key]
+trong obj có 1 phương thức là .keys trả về mảng
+
+Object.keys(user).forEach(funciton (key){
+  log(user[key])
+})
+
+render giao diện
+var user = [{ id: 1, name: "vanduc", email: "duc@gmail.com" }, { id: 2, name: "vanduc 2", email: "duc@gmail.com" }, { id: 3, name: "vanduc 3", email: "duc@gmail.com" }];
+
+var html = `<table width="100%" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Email</th>
+    </tr>
+    ${user
+      .map(function (user) {
+        return `
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+        </tr>
+        `;
+      }).join("")
+      }
+</table>`;
+document.write(html);
+
+từ đại diện cho obj hiện tại: this
+kiểm tra 1 biến có phải là obj
+typeof a ==='object'&&!Array.isArray(a)&& a!= null
+hoặc định nghĩa 1 hàm tạo isObject với nội dung như trên để sử dụng
+Object.isObject = function(variable) {
+    return (
+        typeof variable === 'object' && !Array.isArray(variable) && variable != null
+    );
+};
+this là cấp gần nhất của obj hiện tại
+muốn lấy this của cấp cao hơn hoặc thấp hơn có thể gán vào biến để sử dụng
+arrow function không blinding được this hiện tại mà chỉ sẽ lấy lên cấp cao hơn
+trong dom thì this là sự kiện vừa tác động lên
+var user = {
+    name: "vanduc",
+    getName: function() {
+        return {
+            getInfo: function() {
+                return `
+            Name:${this.name}
+            `
+            }
+        }
+    }
+}
+console.log(user.getName().getInfo());
+
+hàm combine data truyền vào sử dụng this gán biến current để nhận được obj bên ngoài bởi hàm map 
+ko liên quan đến obj bên ngoài mà nó là của window 
+var user = {
+    name: "vanduc",
+    email: "duc@gmail.com",
+    combine: function(...args) {
+        var current = this;
+        var newArr = args.map(function(key) {
+            return current[key];
+        })
+        return newArr;
+    },
+};
+console.log(user.combine('name', 'email'));
+đây chỉ là cách nông dân dùng cho mỗi obj có phương thức combine
+ 
+Làm thế nào để kế thừa được hàm combine ở tất cả các obj?
+-> sử dụng prototype
+var user = {
+    name: "vanduc",
+    email: "duc@gmail.com"
+};
+Buổi 20
+Object.prototype.combine = function(...args) {
+    var current = this;
+    var newArr = args.map(function(key) {
+        return current[key];
+    })
+    return newArr;
+}
+console.log(user.combine('name', 'email'));
+
+hàm tạo : bản thiết kế cho obj: function constructor 
+thường là danh từ và viết hoa chữ đầu :Pascal case
+tạo 1 function nó là con của wndow 
+tạo 1 hàm tạo nó là con của obj và window 
+this trong hàm tạo là obj hiện tại 
+var Person = function(name, email) {
+        //khai báo các thuộc tính cần phải có this
+        this.name = name
+        this.email = email
+        this.getName = function() { return this.name }
+    }
+    //tạo đối tượng
+var person = new Person("duc", "duc@")
+console.log(person);
+console.log(person.getName());
+có thể thêm phương thức vào prototype bằng cách 
+Person.prototype.getId=(function...)
+2 cách viết thêm phương thức vào hàm tạo: sửa thẳng vào core và áp thêm 1 cái mới 
+thường dùng cách viết thêm 1 phương thức mới bởi ko thể vào core sửa
+
+kiểm tra 1 biến được tạo từ hàm tạo nào
+log(person.constructor.name)->Person 
+string từ string
+array từ array
+obj từ obj
+hoàn toàn có thể viết 1 hàm kiểm tra 1 biến được tạo từ hàm tạo nào
+Person.isPerson=func(var){
+  return var&&var.constructor.name==='Person'
+}
+->local function: các hàm tạo trong js cho phép viết hàm con
+nếu ko đưa tên hàm tạo nó sẽ tự hiểu là tạo từ window 
+
+các phương thức  viết trực tiếp trong core cần thông qua obj của hàm tạo
+còn các phương thức viết bên ngoài core thì cần thông qua tên hàm tạo
+trong trường hợp có prototype ta ko dùng for in để đọc data mà dùng obj.keys để chỉ đọc các thuộc tính bỏ qua prototype
+
+querystring :gg
+viết map2 custom-> gg
+nối 2 obj ko dùng hàm có sẵn,es6 trở lên
+
+for(var key in obj1){
+  obj2[key]=obj1[key]
+}
+đọc obj1 nối vào obj2 nếu trùng thì ghi đè
+
+
+đếm số lần xuất hiện của mỗi từ lorem ko phân biệt hoa thường
+replaceall tất cả dấu câu->split->một mảng gồm toàn các từ
+đếm mỗi từ xuất hiện bn lần bằng cách 
+tạo 1 mảng result ={} tolowercase các từ
+nếu từ chưa tồn tại-> gán =1
+nếu từ đã tồn tại-> ++
+
+nối obj1 và obj2
+thủ công như trên
+obj.asign(obj1,obj2)//targer,source
+nối obj2 vào obj1
+
+tạo obj ko có prototype(rỗng) bằng cách 
+a=obj.create(null)
+muốn sử dụng prototype nào thì thêm vào thôi
+
+array dùng map để clone
+obj dùng assign để clone
+-->
+<!-- buổi 21
+có 2 obj a,b
+gán b=a->cùng ô nhớ trong bộ nhớ heap -> a đổi-> b đổi và ngược lại
+3 kiểu dữ liệu đều sử dụng tham chiếu này :arr obj func
+
+vấn đề:gán obj mới obj cũ thay đổi-> sao chép obj:để không tác động đến obj ban đầu
+assign:chỉ sao chép được cấp ngoài cùng
+kĩ thuật es6:spread: obj1={...obj2}:cũng chỉ ngoài cùng
+huyên thoại: obj1=json.parse(json.stringify(obj2)):tất cả các cấp
+
+với mảng thì có nhiều cách hơn:nguyên lý vẫn giống obj
+map return về item
+slice(0)
+filter return true
+scread es6[...arr]
+json
+
+toán tử option chaining ?.
+xuất hiện trong es12 để xử lý các trường hợp check null và undefine để code ko lỗi
+option chaining có 2 trường hợp ở phương thức(thêm vào trước lời gọi hàm) và 
+thuộc tính(thêm vào trước khi truy cập vào key)
+
+không thể so sánh 2 arr,obj,func rỗng 
+nó luôn false vì vị trí ô nhớ của 2 toán hạng khác nhau
+
+Cách so sánh 2 toán hạng-> chuyển về json để so sánh json.stringify(a)===json.stringify(b)
+json là chuỗi(chuyển về kiểu dữ liệu nguyên thủy để so sánh)
+
+chữa bài tập hiển thị so le các bài viết
+phân tích giao diện : ảnh trái text phải
+var posts = [{
+        title: "Tiêu đề 1",
+        excerpt: "content 1",
+        thumbnail: "https://picsum.photos/200/100",
+    },
+    {
+        title: "Tiêu đề 2",
+        excerpt: "content 2",
+        thumbnail: "https://picsum.photos/200/100",
+    },
+    {
+        title: "Tiêu đề 3",
+        excerpt: "content 3",
+        thumbnail: "https://picsum.photos/200/100",
+    },
+];
+var html = `<div class="posts">
+${
+  posts?.length
+    ? posts
+        .map?.(function (post, index) {
+          return `<div class="posts-item ${
+            index % 2 != 0 ? "posts-right" : ""
+          }">
+    <img src="${post.thumbnail}" alt="${post.title}">
+    <div>
+        <h2>${post.title}</h2>
+        <p>${post.excerpt}</p>
+    </div>
+</div>`;
+        })
+        .join(" ")
+    : "Không có bài viết nào"
+}
+
+</div>`;
+document.write(html);
+css:
+.posts-item {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+    gap: 20px;
+}
+
+.posts-right {
+    flex-direction: row-reverse;
+}
+
+detructering:phá vỡ cấu trúc obj để truy cập trực tiếp vào key của obj hoặc arr
+
+Number: kiểu dữ liệu nguyên thủy khi được gọi tạo ra 1 obj tạm thời để truy cập vào 1 hàm tạo
+hoạt động tương tự string
+log([Number])//các hàm số và define giá trị const 
+type of number là number
+kiểm tra 1 số nguyên Number.isInterger(variable)->true/false
+không có hàm kiểm tra số thực nên cần kiểm tra loại trừ
+
+Số NaN: not a number nhưng khi type of nó lại là 1 số
+xảy ra khi các biểu thức số học ko thể tính: number-string...
+khi string là 1 số nó sẽ tự ép kiểu về number để thực hiện phép toán ngoại trừ phép +
+ép kiểu ko thành công -> trả về NaN
+chia cho 0 trả về infinity 
+
+if(Number.isNaN(a))->true/false: kiểm tra NaN
+
+Số infinity :vô cực
+khi chia cho 0 hoặc vượt quá dung lượng bộ nhớ cho phép đều quy về ìninity
+nên khi so sánh 2 infinity sẽ bằng nhau
+Kiểm tra 1 biến có phải 1 số ko 
+typeof='number'&&!Number.isNaN&&a!==Infinity 
+xử lý số khá phức tạp nên dùng thư viện : Numeral.js,moment.js
+
+Ép kiểu: số nguyên
+Number.parseInt(a) đọc từ trái qua phải lấy toàn bộ kí tự số chuển qua number : 12asda12->12
+Ép kiểu: số thực
+Number.parseFloat(a) đọc từ trái qua phải lấy toàn bộ kí tự số chuển qua number : 12.2asda12->12.2
+Ép kiểu số: 
+dùng + -> bên trong có 1 kí tự khác number-> NaN(có thể ép cả số thực và nguyên)
+a=Number(a) tương tự +
+
+Chuyển số thành chuỗi:a=a.toString() hoặc a=a+"" 
+Lấy phần thập phân và làm tròn:toFix(n)-> n là số chữ số thập phân
+toFix() trả về 1 chuỗi
+
+Định dạng số : 
+toLocaleString() tự động thêm dấu ,
+nhận vào mã quốc gia mặc định lấy định dạng máy tính
+console.log(price.toLocaleString("vi"));-> , thành .
+
+console.log(price.toLocaleString("vi", {
+    style: "currency",
+    currency: "VND"
+}));-> thêm đ
+current:"USD"-> thêm $
+
+DOM:mô hình đối tượng của tài liệu HTML Note mô hình cây DOM
+thao tác với dom bản chất là thao tác với element
+Các loại Dom:
+dom elements: truy xuất vào các thẻ html tạo ra node(nút)
+node là obj
+
+dom html: giúp thay đổi nội dung và thuộc tính của html thêm sửa xóa đọc
+dom css:thay đổi css inline của thẻ html
+dom navigation: thực hiện việc truy xuất vòa các thẻ html theo phân cấp cha con
+dom event:gán sự kiện vào thẻ html
+dom event listener : lắng nghe sự kiện
+dom node:thao tác với các element thông qua obj
+
+đầu tiên phải có element thì mới thực hiện được thao tác truy xuất(lý do để file js ở dưới cùng để đảm bảo html đã tải xong)
+
+1 truy xuất thông qua id: var title=doc.getelementbyid("title")-> chỉ chọn được id title đầu tiên
+-> biến title là 1 obj hay 1 element (bọc cặp ngoặc [] để xem thuộc tính để xem các thông tin có thể truy xuất liên quan)
+
+2 truy xuất thông qua class: var title=document.getelementsbyclassname("title")->trả về toàn bộ thẻ có class"title"
+trả về giống mảng nhưng ko phải mảng-> collection
+truy xuất bằng for thường
+
+nguyên tắc: số nhiều phải lặp qua từng cái, số ít có thể truy cập trực tiếp 
+
+3 truy xuất thông qua tagName :số nhiều nên vẫn trả về 1 list nên cần lặp
+var titleList=document.getelementsbytagName("h1")
+
+4 truy xuất thông qua css selector title=document.queryselector('#title.title')
+toàn bộ selector đều có thể áp dụng sang
+--và chỉ lấy cái đầu tiên
+
+5. truy xuất thông qua css selector title=document.queryselectorall('#title')
+trả về mảng nên có thể sử dụng mảng được
+
+các option riêng: var body=document.body vì body là con trực tiếp của html
+head tương tự
+
+truy cập vào các cấp con 
+Cách 1: sử dụng queryselector('.class_cha .class_con')
+sử dụng phân cấp cha con ngay tại lúc select node
+Cách 2: lấy class_cha rồi class_con=class_cha.queryselector('.class_con')
+
+ví dụ selector của form
+form có thể dựa vào name của thẻ để truy cập vào thẳng html
+ <form action="" name="register">
+        <input type="text" name="fullname" id="">
+    </form>
+var form=document.resister-> lấy được thẻ form
+var fullname=document.resister.fullname-> lấy được input của thẻ form
+-->
+<!-- video 22
+  Event:
+  mỗi thẻ html luôn tồn tại những sự kiện có sẵn do dom 
+  gán sự kiện cho thẻ html
+  tạo node và log [tên_node] để thấy các sự kiện được hỗ trợ
+
+  Gán sự kiện vào thẻ html có 2 cách:
+  Cách 1: gán thông qua dom(function)
+    node.onclick=function(){//listener
+      //action
+    }
+  Cách 2: thêm trực tiếp vào thẻ html
+  định nghĩa 1 function bên js và sang bên html gọi hàm(không được sử dụng nhiều do phải sửa html hoặc bị lộ class,id)
+
+  -> tên gọi của 2 cách: Event Handler
+  search event của tag html: tên_thẻ event để tra cứu các sự kiện của thẻ html được hỗ trợ
+  
+  Event onchange:hoàn thành sự thay đổi ví dụ thay đổi nổi dung của 1 input (chỉ hỗ trợ trong form)
+  Event onkeyup:lấy ra các phím được thả lên
+  Event onkeydown:lấy ra các phím được ấn xuống
+  note: hành động click chỉ hoàn thành khi thả chuột ra 
+  -> bắt được hành động click xuống bằng onmousedown và nhả chuột onmouseup
+  -> tham số e là event obj có thể bắt được ấn chuột trái phải...
+  Event onfocus vào: onfocus và focus ra : blur
+  Event onpaste: để paste vào form(ctrl+v, chuột phải->dán...)
+  tương tự oncopy,oncut...
+
+  Gán sự kiện cho thẻ html và đợi hành động người dùng nhưng 2 sự kiện trùng nhau thì sao?
+  -> nó chỉ nhận cái cuối bởi nó đã bị ghi đè
+  -> khắc phục bằng cách Event listener
+btn.addEventListener('click', function() {
+    console.log(btn);
+})
+btn.addEventListener('click', function() {
+    console.log("btn");
+})
+2 tham số tên sự kiện và hàm có thể gọi theo kiểu callback(chỉ đưa tên hàm vào ko có lời gọi hàm)
+hoặc là var hàm bên ngoài sau đó gọi trong event listener
+Event trong dom luôn tồn tại 1 tham số ở listener-> Event Obj thường đặt là e
+
+sự kiện xóa sự kiện khác node2.addeventlistener('click',function(){
+  node1.removeeventlistener('click',func(){})
+})
+cần tên sự kiện và hàm sự kiện và chỉ xóa 1 lần
+sự kiện luôn tồn tại và node1.removeeventlistener('click',func(){}) loại bỏ hàm thực thi sự kiện
+tương ứng của sự kiện click của node1 bởi trong 1 element có thể có nhiều sự kiện một sự kiện có nhiều hàm thực thi
+đây chỉ là xóa 1 hàm đi thôi 
+vấn đề: ul nhiều li click vào li bất kì đều có thể kích hoạt sự kiện
+node ='ul li'->trả về 1 node list
+foreach trả về từng element
+từng element được gán addlistener 
+chọn node->lặp->gán event
+
+item là 1 element mà this trả về element hiện tại được event nên ta có thể dùng this để thể hiện element ta tác động sự kiện lên
+-> sau này có đổi biến thì các đoạn code bên trong ko cần sửa lại
+this trong (obj,prorotype,event)
+trong event còn 1 chuyên đề custom event: tự tạo ra event riêng sử dụng những cái có sẵn
+(lan truyền hành động từ file này sang file kia : đẩy event (dispatch event))
+
+
+DOM HTML
+nội dung thẻ html:innerHTML
+innerText:bỏ hết khoảng trắng và html(ngoại lệ nếu dùng css ẩn đi thì nó ko bỏ khoảng trắng và bỏ html)
+textContent: giữ nguyên khoảng trắng và bỏ html
+outerHTML:lấy cả element hiện tại và ko bỏ html
+
+Thay đổi nội dung cho thẻ html
+innerHTML=`<h2>abc</h2>`-> trả ra y nguyên thẻ h2 bởi ko biên dịch được html và coi nó là text
+outerHTML=`<h2>abc</h2>`-> thay thế cả element hiện tại bằng nội dung thẻ h2
+
+bài tập: thay đổi vị trí qua lại nội dung 2 class
+var btn = document.querySelector(".btn");
+var content = document.querySelector(".content");
+var result = document.querySelector(".result");
+
+btn.addEventListener("click", function() {
+    if (result.innerText === '') {
+        result.innerHTML = content.innerHTML;
+        content.innerHTML = ''
+    } else {
+        content.innerHTML = result.innerHTML
+        result.innerHTML = '';
+    }
+});
+thêm count 
+var btn = document.querySelector(".btn");
+var content = document.querySelector(".content");
+var result = document.querySelector(".result");
+var count = 0;
+btn.addEventListener("click", function() {
+    count++;
+    if (result.innerText === '') {
+        result.innerHTML = content.innerHTML;
+        content.innerHTML = ''
+        btn.innerText = 'Lên: ' + '(' + count + ')';
+    } else {
+        content.innerHTML = result.innerHTML
+        result.innerHTML = '';
+        btn.innerText = 'Xuống: ' + '(' + count + ')';
+    }
+});
+
+//lấy giá trị thuộc tính(chỉ áp dụng với thuộc tính thật của thẻ html ví dụ thẻ a ko có width)
+console.log(link.id);
+console.log(link.href);
+console.log(link.title);
+console.log(link.target);
+console.log(link.className);
+một thuộc tính ko khai báo bên html gọi sẽ ko lỗi mà nó trả ra kết quả rỗng 
+với các thuộc tính ko thật-> trả về undefined
+
+//cập nhật giá trị thuộc tính -> gán lại
+
+ở trong html có 1 khái niệm là data-attribute: được sử dụng để cho phép js can thiệp
+ví dụ data-count=1,data-cur=abc,
+-> chỉ cần có tiền tố data- 
+-> sử dụng để khi chọn vào element chúng ta có luôn dữ liệu của element đó
+-> cách dùng: truy cập vào data-attribute
+console.log(link.getAttribute("data-count"));-> trả về string
+
+khái niệm: truy cập vào data attribute thông qua dataset:trả về 1 obj bỏ tiền tố data- và tự động ánh xạ 
+về dạng key:value
+console.log(link.dataset);
+console.log(link.dataset.count);
+
+Cập nhật giá trị vào data Atrribute:
+link.setAttribute("data-count",10);
+
+việc cập nhật thuộc tính ko nhất thiết phải viết trước ở bên html
+mà có thể setAttribute key:value bên js 
+
+Cập nhật data attribute bằng dataset
+link.dataset.count=10;
+
+class về cơ bản là 1 attribute thông thường nhưng mà trong 1 class có nhiều giá trị nên 
+dom đã tách ra thành obj riêng là classList 
+btn.addEventListener('click', function() {
+    console.log(content.classList);
+})-> trả về list class có thể thao tác như mảng
+add:content.classList.add('hello')-> add chỉ được 1 lần nên muốn add nhiều class 1 lần
+add:content.classList.add('hello','hello2','hello3')
+delete:content.classList.remove('hello')
+không có sửa-> xóa đi add lại
+toggle: tồn tại thì xóa, ko tồn tại thì add
+kiểm tra class có tồn tại ko: content.classList.contains('hello')-> trả về t/f
+xóa cả 1 thẻ html,element:content.remove()
+
+Custom model:
+    <button class="btn">Open</button>
+    <div class="model-box">
+        <div class="model">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est, laudantium nostrum provident aut eius iure cum, magnam quae accusamus aliquam perspiciatis quam amet dolore laborum facere eum voluptate ipsa dolorem?
+            <span class="close">&times;</span>
+        </div>
+        <div class="overlay"></div>
+    </div>
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.model-box {
+    display: none;
+}
+
+.model-box.show {
+    display: block;
+}
+
+.model-box .model {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    top: 30px;
+    width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+    padding: 20px;
+}
+
+.model-box .model .close {
+    cursor: pointer;
+}
+
+.model-box .overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #ccc;
+    opacity: 0.5;
+}
+var btn = document.querySelector(".btn");
+var modelBox = document.querySelector(".model-box");
+var close = document.querySelector(".close");
+var overlay = document.querySelector(".overlay");
+
+var toggleModel = function() {
+    modelBox.classList.toggle("show");
+};
+
+btn.addEventListener("click", toggleModel);
+close.addEventListener("click", toggleModel);
+overlay.addEventListener("click", toggleModel);
+
+QUAN TRỌNG LÀ PHÂN TÍCH GIAO DIỆN VÀ Ý TƯỞNG
+overlay và model cần đứng cùng cấp và modal cần nổi lên trên
+sử dụng overlay và visibility để ẩn hiện modal
+trên 1 trang web cần nhiều model và mỗi model 1 hiệu ứng khác nhau 
+-> sử dụng data-attribute
+-->
+<!-- video 23
+DOM CSS
+
+can thiệp vào các thẻ html thông qua thuộc tính style (inline css)
+thêm giá trị cho thuộc tính style
+content.style = "color:red;font-weight:bold";
+trên thực tế ko dùng bởi thêm thuộc tính mới sẽ đè lên và ko giữ được thuộc tính cũ
+-> không kế thừa
+-> sử dụng style như 1 obj với các thuộc tính bởi js đã build các thuộc tính thành các key của obj
+content.style.color = "red"
+thay ảnh : content.style.background=`url("${image}")`
+-> chỉ cập nhật và lấy giá trị của thuộc tính
+
+có thể sử dụng css động được tính toán bởi js sau đó set lại giá trị của html dùng dom css
+
+content.style là 1 obj-> sử dụng toàn bộ kiến thức obj xử lý
+có thể chuyển dạng obj
+
+var css={
+  backgroundColor:"red",
+  fontStyle:"italic"
+}
+nối 2 obj để set giá trị của tag html sẽ ghi đè các thuộc tính khi trùng và cập nhật
+ko thể gán = bởi nó sẽ ghi đè tất cả thuộc tính bao gồm cả thuộc tính cũ
+obj.assign(content.style,css)
+
+<div class="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repellendus reprehenderit impedit quisquam enim ut pariatur! Consectetur vero quod vitae ad unde culpa nulla obcaecati eum eos et. Optio, vitae?</div>
+    <button class="btn">Ẩn</button>
+    chức năng ẩn hiện nội dung yêu cầu dùng dom css    
+    <button class="btn">Ẩn</button>
+    <div class="content">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repellendus reprehenderit impedit quisquam enim ut pariatur! Consectetur vero quod vitae ad unde culpa nulla obcaecati eum eos et. Optio, vitae?
+    </div>
+    var content = document.querySelector(".content");
+var btn = document.querySelector(".btn");
+
+btn.addEventListener("click", function() {
+    if (content.style.display == "") {
+        content.style.display = "none";
+        btn.innerText = 'Hiện';
+    } else {
+        content.style.display = "";
+        btn.innerText = 'Ẩn';
+    }
+});
+
+Event OBJ
+mỗi sự kiện khi tác động lên 1 thẻ html đều được chia thành các nhóm-> event obj
+ví dụ nhóm keyboard:keyup,keydown,keypress....
+this trong event obj là element ta đang gán sự kiện lên
+log(e)-> các thuộc tính và giá trị mà element thể hiện khi có tác động event
+khi cần làm thì console log ra để lấy và sử dụng
+
+phạm vi của input chỉ là input 
+document: toàn page
+document.addeventlistener...
+
+các thuộc tính của element
+clientX: khoảng cách từ vị trí click đến viền trái của viewheight
+clientY: khoảng cách từ vị trí click đến viền trên của viewwidth
+offsetX: khoảng cách từ vị trí click đến viền trái của element
+offsetY: khoảng cách từ vị trí click đến viền trên của element
+pageX: khoảng cách từ vị trí click đến viền trái body
+pageY: khoảng cách từ vị trí click đến viền trên body
+screenX: khoảng cách từ vị trí click đến viền trái màn hình
+screenY: khoảng cách từ vị trí click đến viền trên màn hình
+!!!
+kéo thả vanila js
+var btn = document.querySelector('.btn')
+var isPress = false;
+var clientX, clientY, offsetX, offsetY;
+btn.addEventListener('mousedown', function(e) {
+    isPress = true;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+})
+document.addEventListener('mouseup', function(e) {
+    isPress = false;
+})
+document.addEventListener('mousemove', function(e) {
+    if (isPress) {
+        btn.style.left = e.clientX - offsetX - 10 + 'px';
+        btn.style.top = e.clientY - offsetY - 10 + 'px';
+    }
+})
+
+nếu không muốn set bên css thì ta có thể obj.assign biến css có 
+potision:relative,
+top...
+left...
+
+Đây chỉ là kéo
+thả là nhả ra tại 1 vị trí mới sẽ set luôn element tại vị trí đó
+
+PreventDefault và stopPropagation
+chặn hành động mặc định của thẻ html và chống nổi bọt
+ví dụ hành động mặc định của thẻ a(chuyển hướng), form(submit)...
+var link = document.querySelector('.link')
+link.addEventListener('click', function(e) {
+    e.preventDefault()
+    console.log(this.href);
+})->chặn hành động mặc định để có thể lấy ra href của thẻ a
+
+custom menu chuột phải:
+tạo sẵn 1 menu mặc định bên html để display none
+khi người dùng rightclick thì hiển thị lên (giống zingmp3)
+set thêm click vào vị trí khác trong document để tắt menu nhưng 
+-> click vào menu vẫn tắt?
+-> sử dụng hàm stopPropagation để click vào menu ko tắt menu
+bởi vì khi click vào thẻ html ở trong cũng đồng nghĩa với click vào document bên ngoài nên 
+chúng ta cần set click vào trong chính là vào trong
+click bên ngoài chỉ nhận bên ngoài
+hàm stopPropagation viết ở html trong để chặn nó ko nổi bọt ra ngoài
+var menu = document.querySelector('.menu')
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault()
+    menu.style.display = "block"
+    menu.style.left = e.clientX + "px"
+    menu.style.top = e.clientY + "px"
+})
+document.addEventListener("click", function() {
+    menu.style.display = "none"
+})
+menu.addEventListener('click', function(e) {
+    e.stopPropagation()
+})
+-->
+<!-- Video 24 
+DOM Navigation
+
+vấn đề : khi tạo 1 element thì ta thường query node từ html có sẵn
+-> chọn được element dựa vào 1 element khác :
+lên cha,xuống con, kế tiếp,lùi lại
+//chọn thành phần cha element
+    //parentElement :trả về element node
+    //parentNode : trả về node (có nhiều loại node)
+        console.log(this.parentElement);-> trả về element cha của this
+  -> dùng vòng lặp while để đẩy lên element cha thỏa mã điều kiện một cách vô hạn
+//xuống con: children -> lấy danh sách các element con trực tiếp
+đặt vấn đề: lấy toàn bộ thẻ li là con trực tiếp của menu ul
+        <ul>
+            <li><a href="">1item</a></li>
+            <li><a href="">2item</a>
+                <ul>
+                    <li><a href="">2.1 item</a></li>
+                    <li><a href="">2.2 item</a></li>
+                    <li><a href="">2.3 item</a></li>
+                </ul>
+            </li>
+            <li><a href="">3item</a>
+                <ul>
+                    <li><a href="">3.1 item</a></li>
+                    <li><a href="">3.2 item</a></li>
+                    <li><a href="">3.3 item</a></li>
+                </ul>
+            </li>
+            <li><a href="">4item</a></li>
+        </ul>
+
+  queryall(li)->trả ra toàn bộ li
+sử dụng 
+var menu = document.querySelector('.menu')
+console.log(menu.children);-> trả ra 1 list: arr like obj(index là số,có length)
+hoàn toàn có thể ép kiểu về dạng arr= arr.form
+console.log(menu.children[1].children[1].children[0].children[0].innerText);
+-> cần xác định đúng index
+-> thực hành vào xây dựng app chỉ mở 1 ul tại 1 thời điểm (menu con)
+
+bài tập: click vào mỗi item trên menu con
+có con-> đổi màu nền menu con
+ko con->đổi màu chữ item vừa click
+
+var linkItems = document.querySelectorAll('.menu a')
+linkItems.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault()
+        if (this.parentElement.children.length == 1)
+            this.style.color = "blue"
+        else this.parentElement.children[1].style.background = "red"
+    })
+})->bản chất là đếm số lượng con có trong li và lên xuống các element để css cho đúng
+
+Kế tiếp: nextElementSibling lấy thành phần kế tiếp ngang hàng và có thể chồng cấp
+<div class="products">
+        <h2 class="active">Sản phẩm 1</h2>
+        <h2>Sản phẩm 2</h2>
+        <h2>Sản phẩm 3</h2>
+        <h2>Sản phẩm 4</h2>
+    </div>
+chọn sản phẩm 2 từ sản phẩm 1(đứng liền sau)(bất kể thẻ gì đều chọn được)
+console.log(productActive.nextElementSibling);
+
+Lùi lại:previouselementsibling tương tự
+Note: 
+Case next và previous đến cuối quay lại
+<div class="products">
+        <h2 class="active">Sản phẩm 1</h2>
+        <h2>Sản phẩm 2</h2>
+        <h2>Sản phẩm 3</h2>
+        <h2>Sản phẩm 4</h2>
+    </div>
+    <button class="next">Next</button>
+    <button class="prev">Prev</button>
+
+    var productActive = document.querySelector('.products .active')
+var nextBtn = document.querySelector('.next')
+var prevBtn = document.querySelector('.prev')
+var firstE = productActive
+var lastE = document.querySelector('.products').lastElementChild
+nextBtn.addEventListener('click', function() {
+    var nextE = productActive.nextElementSibling
+    if (nextE === null) nextE = firstE
+    nextE.classList.add('active')
+    productActive.classList.remove('active')
+    productActive = nextE
+})
+prevBtn.addEventListener('click', function() {
+    var prevE = productActive.previousElementSibling
+    if (prevE === null) prevE = lastE
+    prevE.classList.add('active')
+    productActive.classList.remove('active')
+    productActive = prevE
+})
+Dom node: khi muốn thao tác với 1 thẻ html thì chúng ta cần phải có thẻ html trước (thật)
+-> tạo ra element node-> khá khó khi làm dự án lớn
+    <div class="content">
+        <h1>Van duc</h1>
+    </div>
+    <button class="btn">Thêm mới</button>
+var btn = document.querySelector('.btn')
+var content = document.querySelector('.content')
+var h1 = content.querySelector('h1')
+h1.addEventListener('click', function() {
+    this.style.color = "red"
+})
+btn.addEventListener('click', function() {
+    content.innerHTML += `<p>Khóa học fullstack</p>`
+})
+ban đầu bấm được vào h1->đỏ
+bấm thêm mới-> bấm h1 thì h1 ko chuyển đỏ nữa ->content đã được làm mới
+khắc phục:-> query lại thẻ h1
+
+btn.addEventListener('click', function() {
+    content.innerHTML += `<p>Khóa học fullstack</p>`
+    h1 = content.querySelector('h1')
+    h1.addEventListener('click', function() {
+        this.style.color = "red"
+    })
+})->code lặp khó kiểm soát bởi khi click vào btn thì all các thẻ đều phải cập nhật lại do tạo mới
+element cũ sẽ ko còn nữa và ko gọi lại được
+(tạo chuỗi element += thì phải gán lại-> lý do app chỉ tác dụng được 1 lần)
+
+->tạo mới element var h2 = document.createElement('h2')
+console.log(h2);-> trả về 1 obj
+muốn đẩy node element vào node đã có thì cần phải có node đã có trước
+append:thêm vào cuối= appendChild
+thêm thẻ h2 vào trong content làm vị trí cuối cùng content.append(h2)
+->thẻ h1 vẫn thế ko cần tạo lại (h1 ko bị ảnh hưởng ) và chỉ node content bị ảnh hưởng 
+->có sẵn obj h2 để thao tác và h1 ko cần gọi lại
+note: 1 element tạo ra chỉ dùng 1 lần muốn dùng thêm ->tạo lại
+tức là append thêm h2 lần nữa sẽ ko được
+var content = document.querySelector('.content')
+var h2 = document.createElement('h2')
+h2.innerText = "khóa học web"
+h2.classList.add('course-name')
+console.log(h2);
+content.append(h2)
+
+
+thêm 1 cặp ul có 3 li vào content
+var content = document.querySelector('.content')
+var ul = document.createElement('ul')
+for (let index = 0; index < 3; index++) {
+    var li = document.createElement('li')
+    li.innerText = `Item ${index}`
+    ul.append(li)
+}
+content.append(ul)
+
+prepend: đẩy lên đầu <> append
+đẩy các li lên đầu 
+    ul.prepend(li)
+đẩy ul lên đầu 
+content.prepend(ul)
+
+Thêm 1 node vào trước 1 node khác
+insertBefore(node mới,node cũ)
+insertAfter nếu cần thì custom= đẩy lên cha sau đó insertbefore (ko cần thiết lắm)
+var p = document.createElement('p')
+p.innerText = "vanduc"
+content.insertBefore(p, h1)
+insertbefore áp dụng trong khá nhiều trường hợp ví dụ như cần đẩy đơn hàng hoặc tin nhắn mới nhất lên đầu hoặc xuống cuối
+
+thay thế 1 node bằng 1 node khác
+replaceChild(node mới,node cũ)-> thay thế obj
+nhưng sau khi thay thế thì obj p còn ko?
+-> obj p vẫn còn nhưng ko còn là con của content nữa nên có thể tái sử dụng
+
+Xóa 1 node con
+content.removeChild(h2)
+
+var h1 = document.createElement('h1')
+h1.innerText = 0
+document.body.append(h1)
+var btn = document.createElement('button')
+btn.innerText = "+"
+document.body.append(btn)
+btn.addEventListener('click', function() {
+    h1.innerText++
+})
+-> tạo 1 bộ đếm bằng dom node và btn chỉ tác động vào h1
+bình thường muốn tạo mới node-> tạo với thẻ html
+->textnode: chỉ có text nhưng có thể thao tác như obj(có các thuộc tính để thao tác)
+sử dụng text node với bộ đếm sẽ dễ dàng hơn
+var h1 = document.createElement('h1')
+h1.innerText = "Count: "
+document.body.append(h1)
+
+var count = document.createTextNode(0)
+h1.append(count)
+
+var btn = document.createElement('button')
+btn.innerText = "+"
+document.body.append(btn)
+
+btn.addEventListener('click', function() {
+    count.data++
+})-> chỉ cập nhật lại text mà ko cần cập nhật cả thẻ html
+
+Comment Node: tự tạo comment dưới dạng 1 node và có thể thao tác với node đó
+sử dụng createComment và thao tác như obj: sử dụng để tạo comment bằng js ví dụ như vscode
+SỬ DỤNG DOM NODE ĐỂ FIX LỖI BẢO MẬT XSS bởi ta innerhtml nên họ có thể đưa html vào chạy
+-> ko cho chạy html???
+-> tạo thẻ p sao đó innerText value tù input và append p vào todoList
+    var todo = document.createElement('p')
+    todo.innerText = name
+    todoList.append(todo)
+
+Checkbox bằng js
+đầu tiên dùng checked để check all true thì foreach để set true cho toàn bộ item và ngược lại
+sau đó check trạng thái từng item bằng cách foreach rồi gán sự kiện cho từng item
+làm sao để biết all true-> every
+tại sao lại sử dụng forEach bởi trong node list cũng có 1 phương thức forEach như mảng
+var checkAll = document.querySelector('.check-all')
+var check = document.querySelectorAll('.check')
+checkAll.addEventListener('change', function() {
+    var checkStatus = this.checked
+    if (checkStatus) check.forEach(function(item) {
+        item.checked = true
+    })
+    else check.forEach(function(item) {
+        item.checked = false
+    })
+})
+check.forEach(function(item) {
+    item.addEventListener('change', function() {
+        var status = Array.from(check).every(function(checkbox) {
+            return checkbox.checked === true
+        })
+        checkAll.checked = status;
+    })
+})
+-->
+<!-- video 27
+sự kiện lắng nghe khi nào cây dom được hình thành:
+để js trước html cũng ko vấn đề: DOMContentLoaded : khi hình thành cây dom thì chạy
+document.addEventLisstender("DOMContentLoader",function(){....})
+tên thuật ngữ load chờ như facebook tạo bộ khung sau đó nó sẽ fill đủ dữ liệu vào
+skeleton loading
+placeholder loadding
+...
+Event Load tác động vào window:tất cả  mọi thứ đều phải load xong
+-> sử dụng để làm chức năng loading
+ví dụ load ảnh từ link động nên ảnh sẽ chậm hơn log từ console-> ảnh trễ -> lỗi
+Code chức năng loading:
+var preloader = document.querySelector('.preloader')
+window.addEventListener('load', function() {
+    preloader.style.opacity = "0"
+})
+ .preloader {
+            position: fixed;
+            inset: 0;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+loading cần làm nhẹ nhất có thể
+sử dụng beforeunload để clone chức năng load fb khi nhập text
+trường hợp cơ bản ko có default value chỉ check nếu value có nhập thì báo ko nhập ('') thì load lại
+var inputEl = document.querySelector('.name')
+inputEl.addEventListener('keyup', function() {
+    // console.log(this.value);
+    if (this.value !== '') {
+        window.addEventListener('beforeunload', function(e) {
+            e.returnValue = 'giatribatki'
+        })
+    }
+})
+Trường hợp có default value và xóa về default value
+var inputEl = document.querySelector('.name')
+var handleBeforeUnload = function(e) {
+    e.returnValue = 'giatribatki'
+}
+inputEl.addEventListener('keyup', function() {  
+    // console.log(this.value);
+    if (this.value !== this.defaultValue) {
+        window.addEventListener('beforeunload', handleBeforeUnload)
+    } else
+        window.removeEventListener('beforeunload', handleBeforeUnload)
+
+})
+Trường hợp ko chỉ có 1 input mà có cả 1 form gợi ý form có sự kiện oninput
+chọc vào thẻ form check thay đổi dữ liệu
+có thể chặn submit mặc định bằng e.preventDefault và sử dụng this.submit() để submit lại
+
+giải: xử lý hành động khi form thay đổi: sự kiện input
+e.targer-> lấy ra trường có giá trị thay đổi
+log e.targer.defaultValue: lấy giá trị mặc định 
+check bằng trạng thái vì ko dùng default value được bởi có nhóm nhập liệu, nhóm chọn...
+check bằng e.target.type='checkbox' và còn lại
+so sánh giá trị mới với giá trị cũ với hàm handle...Ex18
+var loginForm = document.querySelector(".login-form");
+
+var handleBeforeUnload = function(event) {
+    event.returnValue = 1;
+};
+
+loginForm.addEventListener("input", function(e) {
+    if (e.target.type === "checkbox" || e.target.type === "radio") {
+        if (e.target.defaultChecked !== e.target.checked) {
+            window.addEventListener("beforeunload", handleBeforeUnload);
+        } else {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        }
+    } else {
+        if (e.target.defaultValue !== e.target.value) {
+            window.addEventListener("beforeunload", handleBeforeUnload);
+        } else {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        }
+    }
+});
+
+loginForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    window.removeEventListener("beforeunload", handleBeforeUnload);
+    this.submit();
+});
+
+JSON:là chuỗi dùng để mô tả dữ liệu 1 cách chính xác nhất
+tác dụng chính dùng để giao tiếp dữ liệu giữa các nền tảng với nhau
+bài toán giao tiếp: chuyển về 1 kiểu dữ liệu chung để tất cả các nền tảng đọc được và đảm bảo tính toàn vẹn dữ liệu
+xml:dành cho dự án lớn
+json:dự án nhỏ
+
+JSON: cách chuyển giữa các kiểu dữ liệu của ngôn ngữ lập trình tương ứng-> JSON và ngược lại
+sử dụng 2 hàm: JSON.stringify()->chuyển kiểu dữ liệu về json
+                JSON.parse()-> chuyển JSON về kiểu dữ liệu
+
+Các quy tắc tạo file JSON: 
+trong json ko có commment và có thể chuyển all dữ liệu
+chỉ chấp nhận ''                
+key phải đặt trong "" và value cuối ko được thêm ,
+chỉ chấp nhận 1 cặp ngoặc bên ngoài và trước mảng phải có key trong ""
+-->
+
+<!-- Buổi 29
+Event Scroll: thay đổi thanh cuộn trình duyệt
+(sự kiện scroll của window )
+Lấy tọa độ x,y khi scroll
+x=window.scrollX(so với left)
+y=window.scrollY(so với right)
+
+case kéo xuống thay đổi màu trình duyệt
+tạo 1 giá trị curY lưu giá trị lần scroll cuối cùng mặc định là 0
+so sánh giá trị scroll mới và curY để quyết định action
+var curY = 0;
+window.addEventListener("scroll", function() {
+    var y = this.window.scrollY;
+    this.document.body.style.background =
+        y > curY ? "red" : "initial";
+    curY = y;
+});
+chức năng back to top
+mặc định ẩn button nhưng scroll đến một điểm nhất định sẽ hiển thị
+    this.window.scrollY >= 50 ?
+        topBtn.classList.add("show") :
+        topBtn.classList.remove("show");
+lắng nghe click set scroll về 0,0
+topBtn.addEventListener("click", function() {
+    window.scroll(0, 0);
+});
+.top {
+            background-color: red;
+            color: white;
+            border: 0;
+            position: fixed;
+            right: 5px;
+            bottom: 5px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .top.show {
+            display: block;
+        }
+Sử dụng scroll để làm cơ chế phân trang trong client site
+    <header class="header">
+        <h1>HEADER</h1>
+        <nav>Menu</nav>
+    </header>
+var header = document.querySelector(".header");
+var nav = document.querySelector("nav");
+var h1Height = header.children[0].clientHeight;
+var navHeight = nav.clientHeight;
+window.addEventListener("scroll", function() {
+    if (this.window.scrollY > h1Height + 10) {
+        nav.classList.add("fixed");
+        this.document.body.style.paddingTop = `${navHeight}px`;
+    } else {
+        nav.classList.remove("fixed");
+        this.document.body.style.paddingTop = 0;
+    }
+});
+đầu tiên lấy chiều cao của h1 sau đó scroll đến thì fix nav nhưng
+cần tính thêm padding của h1 để ko bị giật và potision,top với document để content cũng ko bị giật
+top đẩy content xuống đúng bằng chiều cao nav
+lấy thông tin thẻ html bằng js: console.log(window.getComputedStyle(header).getPropertyValue("padding"));
+-> có thể lấy được hầu hết thông tin nhưng sẽ ở dạng string cần peplace hoặc parse để về dạng math
+note :getComputedStyle
+khi nav là thẻ a
+click vào mỏ neo sẽ mất tiêu đề mỏ neo -> fix
+var header = document.querySelector(".header");
+var nav = document.querySelector("nav");
+var h1Height = header.children[0].clientHeight;
+var navHeight = nav.clientHeight;
+var paddingHeader = parseInt(
+    window.getComputedStyle(header).getPropertyValue("padding-bottom")
+);
+window.addEventListener("scroll", function() {
+    if (this.window.scrollY > h1Height + 10) {
+        nav.classList.add("fixed");
+        this.document.body.style.paddingTop = `${navHeight}px`;
+    } else {
+        nav.classList.remove("fixed");
+        this.document.body.style.paddingTop = 0;
+    }
+});
+var navItems = nav.children;
+Array.from(navItems).forEach(function(navItem) {
+    navItem.addEventListener("click", function(e) {
+        e.preventDefault();
+        var hash = this.getAttribute("href");
+        var section = document.querySelector(hash);
+        if (section) {
+            var offsetTop = section.offsetTop;
+            window.scroll(0, offsetTop - navHeight - paddingHeader);
+        }
+    });
+});
+
+
+Custom event:thay vì sử dụng các event có sẵn dev có thể tự xây event từ việc kết hợp nhiều event có sẵn
+để nhận lại kết quả mong muốn
+input:range thường được xử dụng để tạo bộ lọc giá
+yêu cầu : kéo hết show -> text
+change trong range bấm kéo thả mới có sự thay đổi hoặc bấm xuống bất kì
+input trong range bấm hoặc kéo đều lấy được hết
+tạo ra event finish bằng hàm new Event với 2 tham số (tên hàm ,option)
+var finishEvent = new Event('finish'):tạo 1 biến lưu trữ obj sự kiện
+sau khi tạo ra cần định nghĩa: dispatch
+dispathEvent : phản hồi sự kiện(phương thức)
+muốn lắng nghe ở element nào thì tác động ở element đó
+var finishEvent = new Event('finish')
+var slider = document.querySelector('.slider')
+var msg = document.querySelector('.msg')
+    // slider.addEventListener('change', function() {
+    //     console.log(this.value);
+    // })
+slider.addEventListener('input', function() {
+    if (+this.value == 100)
+    // msg.innerText = 'Van duc'
+        slider.dispatchEvent(finishEvent)
+    else {
+
+    }
+    // msg.innerText = ''
+})
+slider.addEventListener('finish', function() {
+    msg.innerText = 'vanduc'
+})
+Custom event di chuyen log gia tri cua range
+var inputRangeList = document.querySelectorAll('input[type="range"]');
+var overEvent = new Event("over");
+if (inputRangeList.length) {
+    inputRangeList.forEach(function(input) {
+        input.addEventListener('mousemove', function(e) {
+            var offsetX = e.offsetX
+            var value = (offsetX * 100) / input.clientWidth
+            value = value.toFixed(2)
+            this.data = value
+            input.dispatchEvent(overEvent)
+        })
+    });
+}
+var slider = document.querySelector('.slider')
+slider.addEventListener('over', function() {
+    console.log(this.data);
+})
+Nếu bên file event tác động vào event đã tạo thì nó sẽ tác động vào e obj
+custom event có thể đưa giá trị khởi tạo  và ko thể ghi đè vào event
+var event= new CustomEvent('event',{
+    detail:123
+})
+
+kiến thức:trigger event hành động tự kích hoạt 1 event mà không cần sự tác động của người dùng
+trong js có 2 cách để trigger event
+c1:dùng các hàm có sẵn: click, submit-> nhược điểm: không đầy đủ hàm với all event
+c2: dùng thông qua hàm dispatch event
+
+ví dụ muốn 1s click 1 lần hoặc load trang load luôn
+setInterval(function() {
+    btn.click();
+}, 1000)-> submit tương tự
+--Giả hành động click của người dùng bằng thuộc tính download và phương thức click trong thẻ a
+var btn = document.querySelector(".btn");
+var downloadBtn = document.querySelector(".download");
+var contentEl = document.querySelector(".content");
+
+downloadBtn.addEventListener("click", function() {
+    var content = contentEl.innerText;
+    var blob = new Blob([content]);
+    //tao 1 url tu blob
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "download";
+    a.click();
+});
+hoặc chức năng in hóa đơn dùng ctrl+p nhưng thực tế trong js có hàm window.ptrint in 1 cửa sổ
+Trigger event
+HTMLElement:
+node được query từ html được build từ HTMLElement<Element<node<eventTarger<obj
+
+từ việc cấu tạo của html-> tạo các phương thức domElement
+HTMLElement.prototype.css = function(style = {}) {
+    Object.assign(this.style, style)
+}
+var content = document.querySelector('.content')
+content.css({ color: "red" })
+
+CustomElement tạo ra 1 thẻ html mới có hoạt động giống các thẻ html có sẵn nhưng khác chức năng nhiệm vụ
+-> bắt buộc 2 từ và có gạch ngang
+tạo 1 func là 1 hàm tạo phải kế thừa từ html element,để kế thừa được từ nó thì phải sử dụng hàm tọa rèlect
+tham số 1 kế thừa htmlelement
+tham số 2 các tham số muốn truyền (mảng)
+tham số 3 hàm tạo hiện tại
+function HelloWorld() {
+    return Reflect.construct(HTMLElement, [], HelloWorld)
+}->trả về func,log prototype chỉ lấy được mỗi obj
+lấy từ html-> helloworld.prototype=obj.create(htmlelement.prototype)-> không thể gán trực tiếp
+tạo được nội dung của element->lycycle callback
+-> vòng đời: cóntructor mặc định là helloworld-> connectedCallback=func{//hành động{ví dụ: this.innerText='abc'}}-> khi gọi html sẽ làm hành động đó in ra abc
+->khi thuộc tính thay đổi: attributeChangedCallback=func->disconnectedCallback=func{}:khi element bị xóa
+gói gọn chung lại là Web commponents...khó hiểu thật
+
+Shadown Dom:...
+obj literal:đối tượng nguyên bản -> khởi tạo bằng {}
+func constructor: tự định nghĩa 1 bản thiết kế của 1 đối tượng và khởi tạo = new
+Class: nội dung class có 2 thành phần: thuộc tính và phương thức
+phương thức khởi tạo : constructor: định nghĩa các thuộc tính và thiết lập các giá trị khởi tạo-> khi khởi tạo đối tượng phương thức này sẽ chạy đầu tiên
+this.name=...
+this.email...
+định nghĩa các phương thức
+getName(){
+    return this.name
+}
+getEmail(){
+    retunr this.email
+}
+Kế thừa: extends 
+class Authentication entends User {
+    toàn quyền sử dụng các phương thức và thuộc tính của class kế thừa(class cha)
+
+}
+khởi tạo class mới từ class vừa kế thừa: const auth=new Authencation("vanduc","duc@gmail.com")
+khởi tạo đối tượng từ class được kế thừa thì constructor trong class đó sẽ chạy nếu ko có tìm lên cha
+Nếu muốn constructor chỉ có ở con mà ko có ở cha thì ta phải gọi super() để nó biết chạy constructor của class cha
+cú pháp super(name,email)
+khi này ta mới dùng được this của class con
+
+con kế thừa từ cha 
+cha có thể cập nhật thuộc tính cho class con
+//Class expression 
+const A= class{
+    constructor(){
+        this.name='vanduc'
+    }
+}
+const a=new A()
+Sau khi học class có thể customelement đơn giản hơn 
+customElements.define("hello-world", class extends HTMLElement{
+    connectedCallback(){
+        this.innerText=`hello-world`
+    }
+})
+Phương thức tĩnh và thuộc tính tĩnh:stactic method và stactic property
+không bị phụ thuộc vào đối tượng và ko bị thay đổi khi khởi tạo lại đối tượng
+class User{
+    constructor(){//non-static
+        this.name='vanduc'
+    }
+    getName(){//non-static
+        return this.name
+    }
+    //thuộc tính static
+    static message='vanducduc'
+    //phương thức static
+    static getEmail(){
+        return `abc`
+        //khi khai báo thuộc tính tĩnh thì ko có this đằng trước
+    }
+}
+khi truy cập vào static thì ko cần khởi tạo đối tượng nào cả có thể truy cập thằng vào class User
+kể cả có khởi tạo lại đối tượng thì nó vẫn thế
+log(User.getEmail())
+log(User.message)
+ở phương thức static:this là class hiện tại
+ở phương thức non-static:this là obj hiện tại
+? từ tĩnh truy cập vào bình thường (static-> non-static)
+ko có obj-> tạo obj trong static: const obj=new this()-> new class trả về obj(User )
+?từ non-static gọi đến static
+chuyển đối tượng thành class bởi phương thức constructor this.constructor.getEmail()
+-> có thể gọi được rồi
+setter và getter
+get getName(){}
+khi cần -> log (person.getName)-> vẫn gọi được hàm giống như .length
+set : với set bắt buộc phải có tham số
+set setName(value){
+    this.name=value
+}
+getter và setter sử dụng 1 hàm, phương thức như 1 thuộc tính
+private property : #property
+khai báo thuộc tính bên ngoài constructor và gán trong constructor
+
+JS module
+dùng để nối các module khác vào 1 file được scr bên html
+import những tài nguyên được export từ file khác
+đúng đường dẫn
+export :
+    default: export default user (chỉ có 1)
+    func getProd
+    export default  getProd
+    hoặc export func...(chỉ áp dụng với class và func)
+    const a={},b={}
+    export {a,b}
+import:
+    import default: import user from "./modules/home.js"
+    import getProd form...
+    import {a,b} form ...
+thường dùng export ở trên func luôn ko chờ ex dưới
+sử dụng từ khóa as để có thể đặt tên mới trong lúc import
+ví dụ: import { product as sanpham} from...
+có thể gộp import default và theo name cùng 1 dòng nhưng với nguyên tắc import theo default đứng trước
+có thể sử dụng * để import all: import * as products  from...
+
+BẤT ĐỒNG BỘ:nó sẽ chạy all cùng 1 lúc 
+ví dụ a(),b(),c()
+chạy song song a,b,c và ko chờ 
+nhưng vẫn có một số hàm đồng bộ như alert, confirm...
+lợi ích: nhanh
+nhược điểm: bài toán có độ trễ-> tính toán sai
+
+XỬ lý bất đồng bộ :3 cách 
+callback es5
+promise es6
+asunc await function es7
+
+mỗi cách có 1 nhược điểm và cách sau khắc phục cách trước
+nhưng các module bunder build về es5 để xử lý ví dụ babel
+
+Callback:
+hàm gọi chủ động sẽ chạy trước hàm gọi bị động (callback)
+-> kiểm soát được các hàm sẽ chạy
+var root = document.querySelector(".root")
+const loadImage = (callback) => {
+    var image = "https://picsum.photos/200"
+    var img = document.createElement("img")
+    img.src = image;
+    root.append(img)
+        //-> call data 
+    setTimeout(() => {
+        callback();//giả định load ảnh mất 2s
+    }, 2000);
+};
+const done = () => {
+    console.log("load xong");
+};
+loadImage(done);
+console.log(root);
+->việc chờ xử lý dữ liệu chồng lên nhau quá lâu,khó bảo trì, debug, kiểm soát 
+-> sinh ra promise 
+Promise:
+là 1 obj để xử lý tác động bất đồng bộ:
+pending:chờ
+fulfilled:xử lý thành công
+reject:thất bại
+chỉ có thể chạy vào resolve hoặc reject 
+tương ứng với then và catch
+finally:lúc nào cũng chạy sau then hoặc catch
+nếu ko gọi then hoặc catch thì promise vẫn sẽ là pending
+const downloadImage = () => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = {
+                url: "1",
+                size: 30,
+            };
+            resolve(data)
+                // reject("error");
+        }, 2000);
+    });
+    return promise;
+};
+downloadImage()
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+Promise Hell
+const getA = () => {
+    return new Promise((resolve) => {
+        resolve("getA");
+    });
+};
+const getB = () => {
+    return new Promise((resolve) => {
+        resolve("getB");
+    });
+};
+const getC = () => {
+    return new Promise((resolve) => {
+        resolve("getC");
+    });
+};
+getA().then((response) => {
+    console.log(response);
+    getB().then((response) => {
+        console.log(response);
+        getC().then((response) => {
+            console.log(response);
+        })
+    })
+})
+Khắc phục bằng promise chaning
+getA()
+    .then((response) => {
+        console.log(response);
+        return getC();
+    })
+    .then((response) => {
+        console.log(response);
+        return getB();
+    })
+    .then((response) => {
+        console.log(response);
+    });
+
+    muốn then lần tiếp theo cần phải trả về promise
+    ->ví dụ
+    const getRequest = () => {
+    return new Promise((reslove) => {
+        const data = { name: "F8", teacher: "Van Duc" };
+        const response = {
+            text: () => {
+                return new Promise((reslove) => {
+                    reslove(JSON.stringify(data))
+                });
+            },
+            json: () => {
+                return new Promise((reslove) => {
+                    reslove(data)
+                });
+            },
+        };
+        setTimeout(() => {
+            reslove(response);
+        }, 1000);
+    });
+};
+getRequest()
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+    });
+    phải return về promise vì ko thể đảm bảo cái data kia nó có luôn
+    nên cần chờ data về
+
+    promise all: giải quyết bài toán sử dụng nhiều promise cùng 1 lúc
+    1.tạo 1 mảng chứa all promise
+    2.đưa mảng chứa promise vào promise all
+    const getUser = (id) => {
+    const users = [{
+            id: 1,
+            name: "User 1",
+            salary: 5000000,
+        },
+        {
+            id: 2,
+            name: "User 2",
+            salary: 6000000,
+        },
+        {
+            id: 3,
+            name: "User 3",
+            salary: 7000000,
+        },
+        {
+            id: 4,
+            name: "User 4",
+            salary: 8000000,
+        },
+    ];
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const user = users.find(({ id: _id }) => id === _id);
+            resolve(user);
+        }, 1000);
+    });
+};
+
+const lists = [1, 3, 4];
+//Tính tổng thu nhập của 3 user có trong mảng lists
+// let salary = 0;
+// const getSalary = () => {
+//   for (let index in lists) {
+//     const promise = getUser(lists[index]).then((user) => {
+//       salary += user.salary;
+//       return salary;
+//     });
+//     if (+index === lists.length - 1) {
+//       return promise;
+//     }
+//   }
+// };
+
+// getSalary().then((data) => {
+//   console.log(data);
+// });
+
+//Promise.all() => Giải quyết các bài toán sử dụng nhiều promise cùng 1 lúc
+
+//Tạo ra 1 mảng chứa tất cả các promise
+const requests = lists.map(
+    (id) =>
+    new Promise((resolve) => {
+        resolve(getUser(id));
+    }),
+);
+
+//Đưa mảng chứa promise vào Promise.all()
+Promise.all(requests).then((users) => {
+    const salary = users.reduce((total, user) => total + user.salary, 0);
+    console.log(salary);
+});
+
+const promise = Promise.resolve("F8");
+promise.then((data) => {
+    console.log(data);
+});
+
+const promise2 = Promise.reject("Error");
+promise2.catch((error) => {
+    console.log(error);
+});
+try catch-> báo lỗi 
+
+ASYNC AWAIT :
+ASYNC func : ////luôn trả về 1 promise/////
+1 lần await là 1 lần then<----
+muốn bắt reject thì đưa vào try catch còn nếu nó success thì nó sẽ trả về bên reslove
+nếu có nhiều then thì then nào lỗi nó sẽ ném luôn then đó qua catch
+và finally,catch giống promise
+gọi 1 hàm trả về promise mà ko cần .then-> dùng await 
+
+
+API:tạo cho 1 giao diện lập trình ứng dụng giao tiếp ứng dụng này khác
+3 loại:web api, os api, thư viện và framework api
+giao tiếp fe và be,be và be,fe và fe
+
+các chuẩn khác nhau nên sẽ có các khái niệm khác nhau
+chuẩn: rest soap xem-rpc json-rpc
+rest và restful:
+rest: là tập hợp các ràng buộc và kiến trúc
+restfull api: áp dụng vào viết api theo tiêu chuẩn
+apication programing interface
+Fetch api:dữ liệu lấy ở đâu ra?-> backend
+giao tiếp giữa fe và be : http protocol cần có sự cho phép của be
+be: xây dựng api để các ứng dụng khác có thể thao tác:crud
+Fetch api: 
+thường api được xây dựng theo chuẩn restful:
+URL:serverApi+resource 
+ví dụ: https://api.fullstack.edu.vn/users 
+serverApi:https://api.fullstack.edu.vn
+resource:users :thể hiện tài nguyên liên quan-> users xuyên suốt api
+5 http method hay dùng: 
+
+
+get,lấy dữ liệu
+post,thêm mới
+put,sửa ghi đè(xóa đi insert lại)
+patch,sửa ko ghi đè(sửa các trường được gọi)
+delete,xóa
+
+Endpoint:sự kết hợp giữa method và resource: get/users ,get/user/{id}
+HTTPResponse code: success:200,created:201,not found :404
+
+HTTP Response Message: Json
+
+Lấy api ở đâu khi chưa học backend:
+tự viết: có kiến thức be và db
+sử dụng dịch vụ mockup api
+sử dụng các thư viện mockup api
+
+port Mặc định của json là 3000 của react cũng là 3000 nên cần đổi 1 trong 2
+
+Làm sao để client gọi được API từ backend:
+sử dụng xmlHttpRequest: cũ ko trả về promise
+fetch: mới trả về promise 
+thư viện axios, jquery ajax
+
+cơ chế client side rendering và server side rendering
+client-> dùng client đọc dữ liệu từ server tạo giao diện html từ json phân tích bởi js
+server->trả về html từ server
+
+học client:
+const serverApi = `http://localhost:3000`;
+fetch(`${serverApi}/users`).then((response) => {
+    // console.log(response); chỉ trả về thông tin của request
+    //muốn lấy dữ liệu phải return
+    // response.json()-> trả về dữ liệu và tự parser về obj,arr
+    //response.text()-> trả về bản gốc của api
+    return response.json();
+}).then((response) => {//có thể then được bởi response.text hoặc .json đều là promise
+    console.log(response);
+});
+bản hoàn chỉnh:
+const serverApi = `http://localhost:3000`;
+fetch(`${serverApi}/users`)
+    .then((response) => {
+        // console.log(response);
+        return response.json();
+    })
+    .then((users) => {
+        // console.log(response);
+        document.body.innerHTML = users
+            .map(({ name, email }) => {
+                return `<div>
+        <h2>${name}</h2>
+        <h2>${email}</h2>
+        <hr>
+        </div>`;
+            })
+            .join("");
+    });
+
+Sử dụng async     :
+const serverApi = `http://localhost:3000`;
+
+const getUsers = async() => {
+    const response = await fetch(`${serverApi}/users`)
+    const users = await response.json()
+    console.log(users);
+}
+getUsers()
+ get users theo id thì 
+ thêm biến id và /${id} sau fetch
+ const serverApi = `http://localhost:3000`;
+
+const getUser = async(id) => {
+    const response = await fetch(`${serverApi}/users/${id}`);
+    const user = await response.json();
+    console.log(user);
+};
+getUser(2);
+THêm mới
+const serverApi = `http://localhost:3000`;
+const postUser = async(data) => {
+    //data = object = Dữ liệu gửi lên SERVER
+    const response = await fetch(`${serverApi}/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    console.log(response);
+};
+
+postUser({
+    name: "User 2",
+    email: "user2@gmail.com",
+});
+reload=thêm mới 1 lần và name, email là key bên backend
+
+UPDATE:(data,id)
+const updateUser = async(data, id) => {
+    const response = await fetch(`${serverApi}/users/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    console.log(response);
+};
+updateUser({ name: "user 1" }, 1);
+DELETE:
+const deleteUser = async(id) => {
+    const response = await fetch(`${serverApi}/users/${id}`, {
+        method: "DELETE",
+    });
+    console.log(response);
+};
+deleteUser(1);
+case study : sử dụng json-server và fetch để xây client
+import { client } from "./client.js";
+const render = (posts) => {
+        const postEl = document.querySelector('.posts')
+        postEl.innerHTML = `<div class="row">
+    ${posts.map(({title,content})=>`<div class="col-lg-4 col-6">
+    <div class="border p-3">
+        <h2><a class="text-decoration-none" href="#">${title}</a></h2>
+        <p>${content}</p>
+    </div>
+</div>`).join("")}
+</div>`
+}
+
+
+const getPost = async() => {
+    const { data: posts } = await client.get(`/posts`);
+    // console.log(posts);
+    render(posts)
+};
+getPost();
+
+XSS là 1 lỗi bảo mật fe rất hay mắc phải 
+Cách: tìm các mã được sinh ra bởi api xóa el đi chỉ để text bằng biểu thức chính quy
+-> strip html tag js
+xss :xử lý phải khéo-> chuyển toàn bộ thẻ html được sinh ra từ map thành striphtmltag
+sort trong web là sort ở json-sever(be) chứ ko phải la fe,fe chỉ gửi 1 yêu cầu lên thôi
+ để sort url=`/posts?_sort=id&_sort=desc`
+ đọc request ở network : fetch/xhr->request->response
+ 2 request nhìn giống nhau nhưng thực chất khác:
+ prelight: thực chất là 1 request thăm dò:method:options
+ fetch: fetch data thực sự:method:get...
+
+ tình huống nếu cứ để chuỗi là biến url->chuyển obj query thành query string
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container py-3">
+        <div class="posts">
+            
+        </div>
+    </div>
+    <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>
+<!-- 
+    tls_ex03
+    Shb@2023
+    -->
