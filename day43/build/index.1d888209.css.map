@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["index.1d888209.css","src/assets/scss/style.scss"],"sourcesContent":["* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n/*# sourceMappingURL=index.1d888209.css.map */\n","* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n"],"names":[],"version":3,"file":"index.1d888209.css.map"}
